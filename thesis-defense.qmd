@@ -1,0 +1,808 @@
+---
+title: "A Hybrid Particle Filter for Simultaneous Parameter and State Estimation"
+author: "Annika Helverson"
+institute: "Department of Biostatistics, University of Iowa"
+date: 04-30-24
+date-format: long
+format: 
+    revealjs:
+        css:
+            - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css
+        theme: uiowa
+        embed-resources: true
+        slide-number: true
+        scrollable: true
+        footer: "A Hybrid Particle Filter"
+        logo: "IOWA-logo.png"
+        mermaid: 
+            theme: default
+---
+
+## Scope of thesis
+
+This thesis consists of three components:
+
+1. A computationally efficient algorithm for state space estimation
+
+2. A software package in Julia for convenient implementation of our algorithm 
+
+3. A real data application to a cholera outbreak in Haiti
+
+## Outline
+
+1. Motivation
+2. Background
+3. Nested Particle Filter  
+4. Hybrid Particle Filter 
+5. Simulation Study 
+6. Algorithm Speed 
+7. Software
+8. Discussion
+
+## Motivation
+
+Infectious disease modeling plays a pivotol role in understanding and predicting the impact of pathogens on public health, but developing effective models is challenging.
+
+- It can be difficult to characterize how pathogens interact with their hosts and the environment.
+
+- Factors like heterogeneous host mobility patterns and immune responses complicate the disease dynamics.
+
+- The outcome of interest might not be directly observable.
+
+    - Unobserved outcome is called a **latent state**
+
+- Identifying a simplified yet reasonable representation of the underlying process can be an important step in modeling such a complex system.
+
+
+## State Space Models 
+
+State space models relate latent states and their evolution to observed outcomes.
+
+- These models have two fundamental components:
+
+    1. State transition equation $x_t = f(x_{t-1}, \theta, \epsilon_t)$
+
+        - Describes how a latent state evolves from $x_{t-1}$ to $x_t$
+
+        - $\theta$ are parameters, $\epsilon_t$ is process noise 
+
+        - Assumed to be a Markov process such that $p(x_t | x_{t-1}, x_{t-2}, \dots, x_{0}) = p(x_t | x_{t-1})$
+
+    2.  Observation equation $y_t = g(x_t, \theta, \delta_t)$
+
+        - Relates observed data $y_t$ to the latent state $x_t$
+
+        - $\delta_t$ is observation noise
+
+## Compartmental Models
+
+The state transition equation can be represented by a compartmental model.
+
+- Relevant disease stages (compartments) such as **susceptible** (S), **infectious** (I), **exposed** (E), and **recovered** or **removed** (R) are identified. 
+
+- At each time point in an epidemic, every individual is classified into one disease stage.
+
+- The Markov transition process defines how individuals move between compartments. 
+
+```{mermaid}
+%%| fig-width: 5
+
+
+flowchart LR
+classDef iowa color:#000000,fill:#FFCD00, stroke:#000000
+  A((S)) --> B((E))
+  B --> C((I))
+  C --> D((R))
+  D --> A
+
+class A,B,C,D iowa
+```
+
+## Problem Statement
+
+::: {.fragment .semi-fade-out}
+In this context, there are two features to estimate:
+
+1. The latent state.
+
+2. Model parameters (e.g., infection rate, incubation period, etc.).
+:::
+. . .
+
+::: {.fragment .semi-fade-out}
+Simultaneous estimation of latent states and unknown parameters lacks a definitive resolution.
+
+- Markov Chain Monte Carlo (MCMC) methods, while theoretically applicable, are inefficient and encounter convergence issues in practice.
+
+- A computationally efficient class of methods for latent state estimation are called **particle filters** but they rely on known parameters.
+:::
+
+. . .
+
+We propose a particle filter extension such that both latent states and model parameters can be estimated within one efficient algorithm.
+
+
+## Particle Filters
+
+:::{.iowa-note}
+::::{.iowa-note-header}
+<i class="fas fa-info-circle"></i> Bayes' Theorem
+::::
+::::{.iowa-note-container}
+ $\text{posterior} = \frac{\text{likelihood} \times \text{prior}}{\text{marginal likelihood}}$
+::::
+:::
+
+The goal of a particle filter is to recursively estimate the posterior, $p(x_t | y_{1:t})$ using Bayes' theorem:
+
+$$p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(x_t | y_{1:t-1})dx_t}$$
+
+. . . 
+
+However, this can rarely be done analytically so an approximation is required. 
+
+- Use importance sampling to approximate the continuous pdf with a weighted sum of $N_s$ potential realizations of the true state: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
+
+## Particle Filters Cont. {visibility="hidden"}
+
+Particle filter approximation: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
+
+- The set $\{ w_t^i, x_{0:t}^i\}_i^{N_s}$ contains $N_s$ samples, $x_{0:t}^i$ and their weights $w_t^i$.
+
+- Importance density chosen such that $q(x_{0:t}|y_{1:t}) = q(x_t | x_{0:t-1}, y_{1:t}) q(x_{0:t-1}|y_{1:t-1})$ 
+
+- Samples are drawn from $x_t^i \sim q(x_t| x_{0:t-1}, y_{1:t})$ 
+
+- Obtain the full sample $x^i_{0:t}$ recursively by augmenting $x_{0:t-1}^i$ with $x_t^i$
+
+- Calculate weights with $w_t^i = w_{t-1}^i \frac{p(y_t | x_t^i) p(x_t^i | x_{t-1}^i)}{q(x_t^i | x_{t-1}^i, y_t)}$
+
+- The weights are then normalized so $\sum_{i=1}^{N_s} w_t^i = 1$
+
+## Particle Filter Components.
+
+To carryout the approximation, particle filters require: 
+
+1. A process model $f_t(x_{t-1}, u_{t})$
+
+2. A measurement model (likelihood) $g_t(x_t, y_t, u_{t})$
+
+. . .
+
+- Assumes $x_{t:1}$ is a Markov chain
+
+    - $p(x_t | x_{1:t-1}, y_{1:t-1}) = p(x_t | x_{t-1})$
+
+    - $p(y_t | x_{1:t}) = p(y_t | x_t)$
+
+## Sequential Importance Sampling (SIS)
+
+The basis of all particle filtering schemes is SIS:
+
+![](SIS.png){width="700" height="350"}
+
+## Toy Demonstration
+
+![](particle_filter.gif){width="700" height="500"}
+
+
+## Problems with Particle Filters
+
+Particle filters are widely used and well documented, but have some notable shortcomings including:
+
+1. Particle degeneracy
+
+. . .
+
+- Solved with **resampling**
+
+. . .
+
+2. Sample impoverishment
+
+. . .
+
+- Solved with **roughening** 
+
+. . .
+
+3. Assumes that parameters are both *static* and *known*
+
+. . .
+
+- Ongoing challenge.
+
+## Relevant Particle Filter Extensions 
+
+**Resample-Move**: a two-step algorithm addressing both particle degeneracy and sample impoverishment. 
+
+- Step 1: Resample particles. 
+
+- Step 2: Use a Markov transition kernel to move proposed states to new locations.
+
+. . .
+
+**The Nested Particle Filter**: designed to approximate the posterior probability distribution of the fixed parameters in a state space model.
+
+- Can jointly estimate a latent state and unknown parameters. 
+
+- Uses two "layers" of filtering, one for the parameters and one for the latent state.
+
+- There are $N \times M$ particles. $N$ is the number of parameter vectors and $M$ is the number of state vectors for each of the $N$ parameter vectors.
+
+- Resampling occurs among each of the $M$ state estimates and again among each of the $N$ parameter vectors.
+
+- Uses only $N$ importance weights for $N \times M$ particles.
+
+## The Nested Particle Filter
+
+::: {.panel-tabset}
+
+### Notation
+
+- $N$ is the number of parameter vectors drawn.
+- $M$ is the number of state estimates per parameter vector
+- $N \times M$ is the total number of particles in the filter
+- $\{X_{t}\}_{t \geq 0}$ is a random sequence called a state process
+- $\{x^{(i,j)}\}_{1 \leq i \leq N; \ 1\leq j \leq M}$ are the state estimates 
+- $\{Y_t\}_{t \geq 1}$ is a random sequence called an observation process
+- $\{y_t\}_{t \geq 1}$ is a specific observation record
+- $\Theta$ is a random variable. If $\Theta = \theta$ the parameter is known.
+- $\epsilon$ is the parameter jittering variance 
+- $\{ \omega^{(i)} \}_{1 \leq i \leq N}$ are the particle weights 
+- $\pi_0(\cdot)$ indicates a prior proposal distribution.
+- $g_{t, \theta}(y_t | x)$ is the likelihood of $x$ (measurement function)
+- $p$ is a constant that determines the jittering variance
+
+### Algorithm
+
+![](nested-alg.png){width="700" height="700"}
+
+### Assumptions 
+
+- The optimal filter, one based on the proposal $p(x_t | x_{t-1}, y_t)$ is continuous with respect to the parameters $\theta$.
+
+    - If $\theta \approx \tilde{\theta}$ then $p(x_{t-1} | y_{1:t-1}, \theta) \approx p(x_{t-1} | y_{1:t-1}, \tilde{\theta})$ and $p(x_{t-1}, \theta | y_{1:t-1}) \approx p(x_{t-1}, \tilde{\theta} | y_{1:t-1})$. 
+
+- $\theta$ can only take on values in compact set $D_{\theta} \subset \mathbb{R}^{d_{\theta}}$ 
+
+- $g_{t, \theta}(y_t|x)$ (likelihood) must be uniformly bounded over the parameter space
+
+:::
+
+## Parameter Jittering Justification
+
+::: {.fragment .semi-fade-out}
+The continuity assumption is required because of the parameter jittering step.
+
+- Filter initialized with $N$ realizations of $\theta$, $\{ \theta_{0}^{(i)}\}_{1 \leq i \leq N}$
+
+- The jitter perturbs each parameter with random noise generated from $N(0, \epsilon)$ where $\epsilon \leq N^{\frac{1}{\frac{p + 2}{p}}}$ at every time step yielding $\{ \tilde{\theta}_{t}^{(i)}\}_{1 \leq i \leq N}$
+
+- With the continuity assumption we argue that $\{ \theta_{0}^{(i)}\}_{1 \leq i \leq N} \approx \{ \tilde{\theta}_{1}^{(i)}\}_{1 \leq i \leq N}$ and subsequently $\{ \theta_{t-1}^{(i)}\}_{1 \leq i \leq N} \approx \{ \tilde{\theta}_{t}^{(i)}\}_{1 \leq i \leq N}$
+
+:::
+
+. . .
+
+This is necessary because the Markov transition, $p(x_t^i|x_{t-1}^i)$ implicitly conditions on the parameter value.
+
+- If $\{ \theta_{t-1}^{(i)}\}_{1 \leq i \leq N} \neq \{ \tilde{\theta}_{t}^{(i)}\}_{1 \leq i \leq N}$, the algorithm cannot be run recursively.
+
+
+
+## Weights for Nested Particle Filter 
+
+Justification for the weighting scheme comes from the Balance Heuristic proposed by Veach and Guibas (1995). 
+
+- Let $p_1, \dots, p_n$ be importance sampling distributions. 
+
+- Define $c_i$ as the proportion of samples drawn from $p_i$ where $\sum_i c_i = 1$.
+
+- Each estimator is parameterized by a set of weighting functions $w_1, \dots, w_n$
+
+The combined estimator across all samples is:
+
+$$F = \sum_{i=1}^n \frac{1}{n_i} \sum_{j=1}^{n_i} w_i(X_{i,j}) \frac{f(X_{i,j})}{p_i(X_{i, j})} \text{      where } X_{i,j} \text{ are indep. samples from } p_i$$
+
+. . . 
+
+If weights are calculated with 
+
+$$\hat{w}_i(x) = \frac{c_i p_i(x)}{\sum_j c_j p_j(x)}$$
+
+The value of the combined estimator, $F$, does not depend on $i$.
+
+
+## The Hybrid Particle Filter
+
+::: {.panel-tabset}
+
+### Introduction
+
+- The hybrid particle filter maintains the $N \times M$ structure of the nested particle filter.
+
+- The weights are extended from an $N \times 1$ vector to an $N \times M$ matrix.
+
+- Resampling is triggered only when the effective sample size drops below a resampling threshold.
+
+- Resample-move is implemented such that a Metropolis-Hastings moves step is applied to $tt\%$ of time points and $pp\%$ of particles. 
+
+### Notation
+
+- $N$ is the number of parameter vectors drawn.
+- $M$ is the number of state estimates per parameter vector
+- $N \times M$ is the total number of particles in the filter
+- $\{X_{t}\}_{t \geq 0}$ is a random sequence called a state process
+- $\{x^{(i,j)}\}_{1 \leq i \leq N; \ 1\leq j \leq M}$ are the state estimates 
+- $\{Y_t\}_{t \geq 1}$ is a random sequence called an observation process
+- $\{y_t\}_{t \geq 1}$ is a specific observation record
+- $\Theta$ is a random variable. If $\Theta = \theta$ the parameter is known.
+- $\epsilon$ is the parameter jittering variance 
+- $\{ \omega^{(i, j)} \}_{1 \leq i \leq N; \ 1\leq j \leq M}$ is the matrix of particle weights 
+- $N_{eff}$ is the effective sample size
+- $N_{threshold}$ is the minimum effective sample size before resampling is triggered  
+- $\pi_0(\cdot)$ indicates a prior/initial proposal distribution.
+- $g_{t, \theta}(y_t | x)$ is the likelihood of $x$ (measurement function)
+- $p$ is a constant that determines the jittering variance
+
+### Algorithm
+
+![](hybrid-alg.png){width="790" height="890"}
+
+:::
+
+## Justification for the Hybrid Particle Filter
+
+There are two fundamental differences between the Nested and Hybrid Particle Filters:
+
+1. In the hybrid filter, resampling only occurs when the effective sample size is small enough. After resampling, a "move" step from resample-move is implemented.
+
+    - Well justified by Gilks and Berzuini (2001)
+
+2. In the hybrid filter, there is one weight for every particle $N \times M$
+
+    - Importance sampling can be applied when the importance distribution depends on both the sample index $(i)$ and iteration index $(t)$ (Cappé et al., 2004).
+
+    - This allows $w_t^{(i)} \propto \frac{p(x_{0:t}^{(i)} | y_{1:t})}{q_{it}(x_{0:t}^{(i)} | y_{1:t})}$ 
+
+## Simulation Study (Single Location)
+
+::: {.panel-tabset}
+
+### Model 
+
+- Chain-binomial SEIR model with three parameters: $\beta$ (transmission rate), $\sigma$ (incubation rate), and $\gamma$ (recovery rate).
+
+- Let $N_S$, $N_E$, $N_I$, and $N_R$ denote the number of people occupying the S, E, I, and R compartments respectively
+
+- $N_p = N_S + N_E + N_I + N_R = 60,000$
+
+$$S \rightarrow E \sim Binomial(N_S, 1 - exp\{-\beta * I / N_p \})$$
+$$E \rightarrow I \sim Binomial(N_E, 1 - exp\{ -\sigma\})$$
+$$I \rightarrow R \sim Binomial(N_I, 1 - exp\{ -\gamma \})$$
+
+- True parameters: $\beta = 0.2$, $\sigma = 0.2$, and $\gamma = 0.1$
+
+- Observations are under-reported cases from $Poisson(\text{rate} = 0.5 * \lambda)$
+
+
+### Simulated Epidemic
+
+![Simulated single location epidemic in a population of 60,000 people over 365 days. (A) Simulated true case counts and observed case counts. (B) Simulated counts in each of the four compartments: S, E, I, and R.](sim1loc.png){width="800" height="300"}
+
+:::
+
+## Simulation Study Conditions 
+
+For both Hybrid and Nested Particle Filters, we vary the number of particles and the priors/initial proposals.
+
+- Number of particles
+
+    - $N = M = 10$
+
+    - $N = M = 30$
+
+    - $N = M = 50$
+
+- Priors/Initial Proposals 
+
+    - Strongly Informative:
+
+        - $\pi(\beta) \sim Normal(0.2, 0.01)$
+
+        - $\pi(\sigma) \sim Normal(0.2, 0.01)$
+
+        - $\pi(\gamma) \sim Normal(0.1, 0.01)$
+
+    - Weakly Informative 
+
+        - $\pi(\beta) \sim Gamma(4, 0.05)$
+
+        - $\pi(\sigma) \sim Gamma(4, 0.05)$
+        
+        - $\pi(\gamma) \sim Gamma(4, 0.05)$
+        
+
+    - Flat 
+
+        - $\pi(\beta) \sim Uniform(0, 0.5)$ 
+        
+        - $\pi(\sigma) \sim Uniform(0, 0.5)$
+        
+        - $\pi(\gamma) \sim Uniform(0, 0.5)$
+
+## Results: Strongly Informative
+
+::: {.panel-tabset}
+
+### I
+
+::: {#fig-1loc-I layout-nrow=2}
+
+![Nested Particle Filter](/nested/Iest_n1l.png){#fig-nested-I width=50%}
+
+![Hybrid Particle Filter](/hybrid/Iest_h1l.png){#fig-hybrid-I width=50%}
+
+Estimated infectious counts (I) using the Nested and Hybrid Particle Filters with
+strongly informative priors/initial proposals.
+:::
+
+### $\beta$
+
+::: {#fig-1loc-beta layout-nrow=2}
+
+![Nested Particle Filter](/nested/betaEst_n1l.png){#fig-nested-beta width=50%}
+
+![Hybrid Particle Filter](/hybrid/betaEst_h1l.png){#fig-hybrid-beta width=50%}
+
+Estimated transmission rate (β) using the Nested and Hybrid Particle Filters with
+strongly informative priors/initial proposals.
+:::
+
+### $\sigma$
+
+::: {#fig-1loc-sigma layout-nrow=2}
+
+![Nested Particle Filter](/nested/sigmaEst_n1l.png){#fig-nested-sigma width=50%}
+
+![Hybrid Particle Filter](/hybrid/sigmaEst_h1l.png){#fig-hybrid-sigma width=50%}
+
+Estimated incubation rate ($\sigma$) using the Nested and Hybrid Particle Filters with
+strongly informative priors/initial proposals.
+:::
+
+
+### $\gamma$
+
+::: {#fig-1loc-gamma layout-nrow=2}
+
+![Nested Particle Filter](/nested/gammaEst_n1l.png){#fig-nested-gamma width=50%}
+
+![Hybrid Particle Filter](/hybrid/gammaEst_h1l.png){#fig-hybrid-gamma width=50%}
+
+Estimated recovery rate ($\gamma$) using the Nested and Hybrid Particle Filters with
+strongly informative priors/initial proposals.
+:::
+
+:::
+
+
+## Results: Flat
+
+::: {.panel-tabset}
+
+### I
+
+::: {#fig-1loc-I-unif layout-nrow=2}
+
+![Nested Particle Filter](/nested/Unif_Iest_n1l.png){#fig-nested-I-unif width=50%}
+
+![Hybrid Particle Filter](/hybrid/Unif_Iest_h1l.png){#fig-hybrid-I-unif width=50%}
+
+Estimated infectious counts (I) using the Nested and Hybrid Particle Filters with
+flat priors/initial proposals.
+:::
+
+### $\beta$
+
+::: {#fig-1loc-beta-unif layout-nrow=2}
+
+![Nested Particle Filter](/nested/Unif_betaEst_n1l.png){#fig-nested-beta-unif width=50%}
+
+![Hybrid Particle Filter](/hybrid/Unif_betaEst_h1l.png){#fig-hybrid-beta-unif width=50%}
+
+Estimated transmission rate (β) using the Nested and Hybrid Particle Filters with
+flat priors/initial proposals.
+:::
+
+### $\sigma$
+
+::: {#fig-1loc-sigma-unif layout-nrow=2}
+
+![Nested Particle Filter](/nested/Unif_sigmaEst_n1l.png){#fig-nested-sigma-unif width=50%}
+
+![Hybrid Particle Filter](/hybrid/Unif_sigmaEst_h1l.png){#fig-hybrid-sigma-unif width=50%}
+
+Estimated incubation rate ($\sigma$) using the Nested and Hybrid Particle Filters with
+flat priors/initial proposals.
+:::
+
+
+### $\gamma$
+
+::: {#fig-1loc-gamma-unif layout-nrow=2}
+
+![Nested Particle Filter](/nested/Unif_gammaEst_n1l.png){#fig-nested-gamma-unif width=50%}
+
+![Hybrid Particle Filter](/hybrid/Unif_gammaEst_h1l.png){#fig-hybrid-gamma-unif width=50%}
+
+Estimated recovery rate ($\gamma$) using the Nested and Hybrid Particle Filters with
+flat priors/initial proposals.
+:::
+
+:::
+
+
+## Results: Weakly Informative 
+
+::: {.panel-tabset}
+
+### I
+
+::: {#fig-1loc-I-weak layout-nrow=2}
+
+![Nested Particle Filter](/nested/gam8_Iest_n1l.png){#fig-nested-I-gam width=50%}
+
+![Hybrid Particle Filter](/hybrid/gam8_Iest_h1l.png){#fig-hybrid-I-gam width=50%}
+
+Estimated infectious counts (I) using the Nested and Hybrid Particle Filters with
+weakly informative priors/initial proposals.
+:::
+
+### $\beta$
+
+::: {#fig-1loc-beta-unif layout-nrow=2}
+
+![Nested Particle Filter](/nested/gam8_betaEst_n1l.png){#fig-nested-beta-gam width=50%}
+
+![Hybrid Particle Filter](/hybrid/gam8_betaEst_h1l.png){#fig-hybrid-beta-gam width=50%}
+
+Estimated transmission rate (β) using the Nested and Hybrid Particle Filters with
+weakly informative priors/initial proposals.
+:::
+
+### $\sigma$
+
+::: {#fig-1loc-sigma-unif layout-nrow=2}
+
+![Nested Particle Filter](/nested/gam8_sigmaEst_n1l.png){#fig-nested-sigma-gam width=50%}
+
+![Hybrid Particle Filter](/hybrid/gam8_sigmaEst_h1l.png){#fig-hybrid-sigma-gam width=50%}
+
+Estimated incubation rate ($\sigma$) using the Nested and Hybrid Particle Filters with
+weakly informative priors/initial proposals.
+:::
+
+
+### $\gamma$
+
+::: {#fig-1loc-gamma-unif layout-nrow=2}
+
+![Nested Particle Filter](/nested/gam8_gammaEst_n1l.png){#fig-nested-gamma-gam width=50%}
+
+![Hybrid Particle Filter](/hybrid/gam8_gammaEst_h1l.png){#fig-hybrid-gamma-gam width=50%}
+
+Estimated recovery rate ($\gamma$) using the Nested and Hybrid Particle Filters with
+weakly informative priors/initial proposals.
+:::
+
+:::
+
+## Simulation Summary 
+
+![](MSE_1loc.png){width="600" height="850"}
+
+## Simulation Discussion 
+
+- With strongly informative priors/initial proposals, both methods estimate parameters well but the Nested approach struggled with state estimation.
+
+- With flat priors/initial proposals, both methods struggled but the Nested approach was better able to estimate parameters.
+
+- With weakly informative priors/initial proposals, both methods were able to estimate parameters but the Nested approach struggled to estimate the latent state. 
+
+- Similar results in our multiple location simulation study.
+
+- Exploration of the parameter space is limited to small perturbations of $\theta$. If the initial parameter values do not adequately cover the region around the true parameter values, it is reasonable to believe that parameter perturbations will not be sufficient in moving the parameters to the true value.
+
+## Speed Comparison
+
+::: {.panel-tabset}
+
+### Setup
+
+- We compared the time required to conduct esttimation (clock time) with the Hybrid and Nested Particle Filters as well as an MCMC approach.
+
+- In order to reach convergence with MCMC we were limited to a simple, single location SIR model with two parameters.
+
+- Effective sample size (ESS) is  not compared because a single measure of ESS for a particle filter is not
+attainable. 
+
+- All timing was done with the BenchmarkTools.jl package and all algorithms were tested using Julia 1.10.0 on an Mac with Apple M1 CPU (3.2GHz) with 8 GB memory.
+
+
+### Model 
+
+Chain binomial SIR model: 
+
+ $$\frac{dS}{dt} = -S * (\frac{\beta}{N_p} * I)$$
+
+$$\frac{dI}{dt} = S * (\frac{\beta}{N_p} * I) - \lambda * I$$
+
+$$\frac{dR}{dt} = \lambda * I$$
+
+- 60,000 people 
+
+- $\beta \sim Uniform(0, 1)$, with true value 0.01
+
+- $\lambda \sim Uniform(0, 1)$ with true value 0.01
+
+
+### Results
+
+| **T** | **N** | **M** | **Hybrid PF Runtime** | **Nested PF Runtime** |
+|-------|-------|-------|-----------------------|-----------------------|
+| 365                             | 10                             | 10                              | > 1 second                             | > 1 second                              |
+| 365                             | 50                             | 50                              | 18 seconds                             | 15 seconds                              |
+| 365                             | 100                            | 100                             | 126 seconds                            | 260 seconds                             |
+| 365                             | 10                             | 50                              | 3 seconds                              | 3 seconds                               |
+| 365                             | 50                             | 10                              | 3 seconds                              | 3 seconds                               |
+| 365                             | 10                             | 100                             | 7 seconds                              | 6 seconds                               |
+| 365                             | 100                            | 10                              | 7 seconds                              | 6 seconds                               |
+| 100                             | 10                             | 10                              | > 1 second                             | > 1 second                              |
+| 100                             | 50                             | 50                              | 7 seconds                              | 4 seconds                               |
+| 100                             | 100                            | 100                             | 33 seconds                             | 16 seconds                              |
+| 100                             | 10                             | 50                              | 1 second                               | > 1 second                              |
+| 100                             | 50                             | 10                              | 1 second                               | > 1 second                              |
+| 100                             | 10                             | 100                             | 2 seconds                              | 2 seconds                               |
+| 100                             | 100                            | 10                              | 2 seconds                              | 1 second                                |
+
+- An MCMC approach using NUTS in Turing.jl with four chains for a 365 time point epidemic ran for 43398 seconds (12 hours, 3 minutes, 18 seconds) before converging. 
+
+:::
+
+## Software
+
+We developed a software package in Julia to implement the Hybrid Particle Filter for compartmental models. 
+
+- The package also implements the Nested Particle Filter.
+
+- Any compartmental model structure can be specific. 
+
+- Supports stochastic and deterministic transition equations. 
+
+- Written entirely in Julia.
+
+- Highly customizeable.
+
+- Handles simulation and estimation. 
+
+## Composite Types 
+
+![Composite types and convenience functions in HybridParticleFilter.jl.
+Rectanges indicate custom types whereas diamonds indicate convenience functions.](composite-types.png){width="550" height="450"}
+
+## Post-Processing 
+
+![Post-processing functions available in HybridParticleFilter.jl. Diamonds
+indicate functions and rectangles indicate output.](post-funcs.png){width="450" height="500"}
+
+## Discussion and Conclusions
+
+- The Hybrid Particle Filter offers a computationally efficient approach to the simultaneous estimation problem. 
+
+    - Does not perform well with flat priors.
+
+    - Fast relative to MCMC but generally slower than the Nested Particle Filter.
+
+- Alternative resampling schemes should be explored.
+
+- Potential for two-stage estimation approaches
+
+    - Results from the Hybrid algorithm could be used as a "hot start" for MCMC
+
+    - Results from the Nested Particle Filter can be used to construct weakly informative priors for the Hybrid Particle Filter. 
+
+## Acknowledgements 
+
+- Thesis and RA advisor, Dr. Grant Brown 
+
+- Committee members, Dr. Emily Roberts, Dr. Daniel Sewell, and Dr. Brian Smith 
+
+- University of Iowa Biostatistics Department faculty, staff, and students 
+
+. . .
+
+- Friends, family, and cats 
+
+![](cats.png){.absolute bottom=0 right=40 width="420" height="420"}
+
+
+## Questions?
+
+![](questions.jpeg){width="530" height="550"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Appendix: Particle Filters {visibility="uncounted"}
+
+Estimation occurs in two steps:
+
+1. **Predict**: Compute the prior $p(x_t | y_{1:t-1}) = \int p(x_t | x_{t-1}) p(x_{t-1} | y_{1:t-1}) dx_{t-1}$
+
+2. **Update**: Use the prior from step 1 to obtain a posterior estimate $p(x_t | y_{1:t})$
+
+$$p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(x_t | y_{1:t-1})dx_t}$$
+
+. . .
+
+However, analytical evaluation of steps 1 and 2 is often impossible and an approximation is required.
+
+- Approximate the continuous pdf with a weighted sum of $N_s$ potential realizations of the true state with $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
+
+## Appendix: Weight Calculation {visibility="uncounted"}
+
+\begin{align}
+    \label{eq:weightDeriv}
+    p(x_{0:t}|y_{1:t}) &= \frac{p(y_{t}|x_{0:t}|y_{1:t-1}) p(x_{0:t}|y_{1:t-1})}{p(y_t | y_{1:t-1})} \\
+    &= \frac{p(y_{t}|x_{0:t}|y_{1:t-1}) p(x_{t}|x_{0:t-1}|y_{1:t-1})}{p(y_t | y_{1:t-1})} \times p(x_{0:t-1}|y_{1:t-1}) \\
+    &= \frac{p(y_t|x_t) p(x_t|x_{t-1})}{p(y_t|y_{1:t-1})} \times p(x_{0:t-1}|y_{1:t-1}) \\
+    &\propto p(y_t | x_t) p(x_t|x_{t-1}) p(x_{0:t-1}|y_{1:t-1})
+\end{align}
+
+Note that importance weights are calculated by taking a ratio of the posterior and the importance density for each particle:
+
+\begin{equation}
+\label{eq:impwt}
+    w_t^i \propto \frac{p(x_{0:t}^i | y_{1:t})}{q(x_{0:t}^i | y_{1:t})}
+\end{equation}
+
+Finally, 
+
+\begin{align}
+    \label{eq:wtsub}
+    w_t^i &\propto \frac{p(x_{0:t}^i|y_{1:t})}{q(x_t^i|x_{0:t-1}^i, y_{1:t}) q(x_{0:t-1}^i|y_{1:t-1})} \nonumber \\
+    &= \frac{p(y_t | x_t) p(x_t|x_{t-1}) p(x_{0:t-1}|y_{1:t-1})}{q(x_t^i|x_{0:t-1}^i, y_{1:t}) q(x_{0:t-1}^i|y_{1:t-1})} \nonumber \\
+    &= w_{t-1}^i \frac{p(y_t|x_t^i) p(x_t^i | x_{t-1}^i)}{q(x_t^i|x_{0:t-1}^i, y_{1:t})} \nonumber \\
+    &= w_{t-1}^i \frac{p(y_t|x_t^i) p(x_t^i | x_{t-1}^i)}{q(x_t^i|x_{t-1}^i, y_t)}
+\end{align}
+
+## Appendix: Nested PF Balance Heuristic {visibility="uncounted"}
+
+- In the Nested Particle Filter, there are $N$ combined estimators, each of which combines $M$ samples with $c_i = \frac{1}{M}$ using the balance heuristic.
+
+- $\{ X_t^{(i)}\}_{i=1}^N$ outer particles and $\{ X_t^{(i,j)}\}_{j=1}^M$ inner particles
+
+- $\{ X_t^{(i,j)}\} \sim p(y_t | x_t^{(i)})$
+
+- $w_t^{(i)} = \frac{1}{M} \sum_{j=1}^M \frac{p(y_t | x_t^{(i, j)})}{p(x_t^{(i)})}$
+
+
+
+
+
+
+
+
+
+
