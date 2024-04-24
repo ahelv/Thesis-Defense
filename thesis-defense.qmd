@@ -133,17 +133,23 @@ We propose a particle filter extension such that both latent states and model pa
 ::::
 :::
 
-The goal of a particle filter is to recursively estimate the posterior, $p(x_t | y_{1:t})$ using Bayes' theorem:
+The goal of a particle filter is to estimate the posterior, $p(x_t | y_{1:t})$, at each time $t = 0, 1, \dots, T$ using Bayes' theorem:
 
 $$p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(x_t | y_{1:t-1})dx_t}$$
 
-. . . 
+- Recursion is used to obtain a complete estimate of the form $p(x_{0:t} | y_{1:t})$
 
-However, this can rarely be done analytically so an approximation is required. 
+::: {.fragment .fade-in}
+- If the system is both **linear** and **Gaussian** a Kalman filter can be used with no approximation. 
 
+- However, an approximation is required for non-linear, non-Gaussian models. 
+:::
+
+::: {.fragment .fade-in}
 - Use importance sampling to approximate the continuous pdf with a weighted sum of $N_s$ potential realizations of the true state: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
+:::
 
-## Particle Filters Cont. {visibility="hidden"}
+## Particle Filters Cont.
 
 Particle filter approximation: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
 
@@ -194,7 +200,7 @@ Particle filters are widely used and well documented, but have some notable shor
 
 . . .
 
-- Solved with **resampling**
+- A solution is **resampling**
 
 . . .
 
@@ -202,7 +208,7 @@ Particle filters are widely used and well documented, but have some notable shor
 
 . . .
 
-- Solved with **roughening** 
+- A solution is **roughening** 
 
 . . .
 

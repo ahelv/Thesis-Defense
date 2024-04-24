@@ -463,16 +463,35 @@ class A,B,C,D iowa
 <p><span class="math inline">\(\text{posterior} = \frac{\text{likelihood} \times \text{prior}}{\text{marginal likelihood}}\)</span></p>
 </div>
 </div>
-<p>The goal of a particle filter is to recursively estimate the posterior, <span class="math inline">\(p(x_t | y_{1:t})\)</span> using Bayes’ theorem:</p>
+<p>The goal of a particle filter is to estimate the posterior, <span class="math inline">\(p(x_t | y_{1:t})\)</span>, at each time <span class="math inline">\(t = 0, 1, \dots, T\)</span> using Bayes’ theorem:</p>
 <p><span class="math display">\[p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(x_t | y_{1:t-1})dx_t}\]</span></p>
-<div class="fragment">
-<p>However, this can rarely be done analytically so an approximation is required.</p>
+<ul>
+<li>Recursion is used to obtain a complete estimate of the form <span class="math inline">\(p(x_{0:t} | y_{1:t})\)</span></li>
+</ul>
+<div class="fragment fade-in">
+<ul>
+<li><p>If the system is both <strong>linear</strong> and <strong>Gaussian</strong> a Kalman filter can be used with no approximation.</p></li>
+<li><p>However, an approximation is required for non-linear, non-Gaussian models.</p></li>
+</ul>
+</div>
+<div class="fragment fade-in">
 <ul>
 <li>Use importance sampling to approximate the continuous pdf with a weighted sum of <span class="math inline">\(N_s\)</span> potential realizations of the true state: <span class="math inline">\(p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)\)</span></li>
 </ul>
 </div>
 </section>
-
+<section id="particle-filters-cont." class="slide level2">
+<h2>Particle Filters Cont.</h2>
+<p>Particle filter approximation: <span class="math inline">\(p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)\)</span></p>
+<ul>
+<li><p>The set <span class="math inline">\(\{ w_t^i, x_{0:t}^i\}_i^{N_s}\)</span> contains <span class="math inline">\(N_s\)</span> samples, <span class="math inline">\(x_{0:t}^i\)</span> and their weights <span class="math inline">\(w_t^i\)</span>.</p></li>
+<li><p>Importance density chosen such that <span class="math inline">\(q(x_{0:t}|y_{1:t}) = q(x_t | x_{0:t-1}, y_{1:t}) q(x_{0:t-1}|y_{1:t-1})\)</span></p></li>
+<li><p>Samples are drawn from <span class="math inline">\(x_t^i \sim q(x_t| x_{0:t-1}, y_{1:t})\)</span></p></li>
+<li><p>Obtain the full sample <span class="math inline">\(x^i_{0:t}\)</span> recursively by augmenting <span class="math inline">\(x_{0:t-1}^i\)</span> with <span class="math inline">\(x_t^i\)</span></p></li>
+<li><p>Calculate weights with <span class="math inline">\(w_t^i = w_{t-1}^i \frac{p(y_t | x_t^i) p(x_t^i | x_{t-1}^i)}{q(x_t^i | x_{t-1}^i, y_t)}\)</span></p></li>
+<li><p>The weights are then normalized so <span class="math inline">\(\sum_{i=1}^{N_s} w_t^i = 1\)</span></p></li>
+</ul>
+</section>
 <section id="particle-filter-components." class="slide level2">
 <h2>Particle Filter Components.</h2>
 <p>To carryout the approximation, particle filters require:</p>
@@ -493,7 +512,7 @@ class A,B,C,D iowa
 <section id="sequential-importance-sampling-sis" class="slide level2">
 <h2>Sequential Importance Sampling (SIS)</h2>
 <p>The basis of all particle filtering schemes is SIS:</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="700" height="350">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" height="350" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="SIS.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="700" height="350">
@@ -503,7 +522,7 @@ class A,B,C,D iowa
 </section>
 <section id="toy-demonstration" class="slide level2">
 <h2>Toy Demonstration</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="700" height="500">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" height="500" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="particle_filter.gif" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="700" height="500">
@@ -519,7 +538,7 @@ class A,B,C,D iowa
 </ol>
 <div class="fragment">
 <ul>
-<li>Solved with <strong>resampling</strong></li>
+<li>A solution is <strong>resampling</strong></li>
 </ul>
 </div>
 <div class="fragment">
@@ -529,7 +548,7 @@ class A,B,C,D iowa
 </div>
 <div class="fragment">
 <ul>
-<li>Solved with <strong>roughening</strong></li>
+<li>A solution is <strong>roughening</strong></li>
 </ul>
 </div>
 <div class="fragment">
@@ -584,7 +603,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-1-2">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="700" height="700">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" height="700" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="nested-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="700" height="700">
@@ -672,7 +691,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-2-3">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="790" height="890">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" height="890" width="790">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="hybrid-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="790" height="890">
@@ -1253,7 +1272,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="simulation-summary" class="slide level2">
 <h2>Simulation Summary</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" width="600" height="850">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" height="850" width="600">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="MSE_1loc.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" width="600" height="850">
@@ -1478,7 +1497,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute quarto-figure quarto-figure-center" width="420" data-right="40" height="420" data-bottom="0" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute quarto-figure quarto-figure-center" data-bottom="0" width="420" data-right="40" height="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
@@ -1489,7 +1508,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions?</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" width="530" height="550">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" height="550" width="530">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="questions.jpeg" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="530" height="550">
