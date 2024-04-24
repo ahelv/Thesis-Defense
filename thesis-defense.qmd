@@ -452,9 +452,9 @@ strongly informative priors/initial proposals.
 
 ::: {#fig-1loc-beta layout-nrow=2}
 
-![Nested Particle Filter](/nested/betaEst_n1l.png){#fig-nested-beta width=50%}
+![Nested Particle Filter](nested/betaEst_n1l.png){#fig-nested-beta width=50%}
 
-![Hybrid Particle Filter](/hybrid/betaEst_h1l.png){#fig-hybrid-beta width=50%}
+![Hybrid Particle Filter](hybrid/betaEst_h1l.png){#fig-hybrid-beta width=50%}
 
 Estimated transmission rate (β) using the Nested and Hybrid Particle Filters with
 strongly informative priors/initial proposals.
@@ -464,9 +464,9 @@ strongly informative priors/initial proposals.
 
 ::: {#fig-1loc-sigma layout-nrow=2}
 
-![Nested Particle Filter](/nested/sigmaEst_n1l.png){#fig-nested-sigma width=50%}
+![Nested Particle Filter](nested/sigmaEst_n1l.png){#fig-nested-sigma width=50%}
 
-![Hybrid Particle Filter](/hybrid/sigmaEst_h1l.png){#fig-hybrid-sigma width=50%}
+![Hybrid Particle Filter](hybrid/sigmaEst_h1l.png){#fig-hybrid-sigma width=50%}
 
 Estimated incubation rate ($\sigma$) using the Nested and Hybrid Particle Filters with
 strongly informative priors/initial proposals.
@@ -477,9 +477,9 @@ strongly informative priors/initial proposals.
 
 ::: {#fig-1loc-gamma layout-nrow=2}
 
-![Nested Particle Filter](/nested/gammaEst_n1l.png){#fig-nested-gamma width=50%}
+![Nested Particle Filter](nested/gammaEst_n1l.png){#fig-nested-gamma width=50%}
 
-![Hybrid Particle Filter](/hybrid/gammaEst_h1l.png){#fig-hybrid-gamma width=50%}
+![Hybrid Particle Filter](hybrid/gammaEst_h1l.png){#fig-hybrid-gamma width=50%}
 
 Estimated recovery rate ($\gamma$) using the Nested and Hybrid Particle Filters with
 strongly informative priors/initial proposals.
@@ -496,9 +496,9 @@ strongly informative priors/initial proposals.
 
 ::: {#fig-1loc-I-unif layout-nrow=2}
 
-![Nested Particle Filter](/nested/Unif_Iest_n1l.png){#fig-nested-I-unif width=50%}
+![Nested Particle Filter](nested/Unif_Iest_n1l.png){#fig-nested-I-unif width=50%}
 
-![Hybrid Particle Filter](/hybrid/Unif_Iest_h1l.png){#fig-hybrid-I-unif width=50%}
+![Hybrid Particle Filter](hybrid/Unif_Iest_h1l.png){#fig-hybrid-I-unif width=50%}
 
 Estimated infectious counts (I) using the Nested and Hybrid Particle Filters with
 flat priors/initial proposals.
@@ -508,9 +508,9 @@ flat priors/initial proposals.
 
 ::: {#fig-1loc-beta-unif layout-nrow=2}
 
-![Nested Particle Filter](/nested/Unif_betaEst_n1l.png){#fig-nested-beta-unif width=50%}
+![Nested Particle Filter](nested/Unif_betaEst_n1l.png){#fig-nested-beta-unif width=50%}
 
-![Hybrid Particle Filter](/hybrid/Unif_betaEst_h1l.png){#fig-hybrid-beta-unif width=50%}
+![Hybrid Particle Filter](hybrid/Unif_betaEst_h1l.png){#fig-hybrid-beta-unif width=50%}
 
 Estimated transmission rate (β) using the Nested and Hybrid Particle Filters with
 flat priors/initial proposals.
@@ -520,9 +520,9 @@ flat priors/initial proposals.
 
 ::: {#fig-1loc-sigma-unif layout-nrow=2}
 
-![Nested Particle Filter](/nested/Unif_sigmaEst_n1l.png){#fig-nested-sigma-unif width=50%}
+![Nested Particle Filter](nested/Unif_sigmaEst_n1l.png){#fig-nested-sigma-unif width=50%}
 
-![Hybrid Particle Filter](/hybrid/Unif_sigmaEst_h1l.png){#fig-hybrid-sigma-unif width=50%}
+![Hybrid Particle Filter](hybrid/Unif_sigmaEst_h1l.png){#fig-hybrid-sigma-unif width=50%}
 
 Estimated incubation rate ($\sigma$) using the Nested and Hybrid Particle Filters with
 flat priors/initial proposals.
@@ -533,9 +533,9 @@ flat priors/initial proposals.
 
 ::: {#fig-1loc-gamma-unif layout-nrow=2}
 
-![Nested Particle Filter](/nested/Unif_gammaEst_n1l.png){#fig-nested-gamma-unif width=50%}
+![Nested Particle Filter](nested/Unif_gammaEst_n1l.png){#fig-nested-gamma-unif width=50%}
 
-![Hybrid Particle Filter](/hybrid/Unif_gammaEst_h1l.png){#fig-hybrid-gamma-unif width=50%}
+![Hybrid Particle Filter](hybrid/Unif_gammaEst_h1l.png){#fig-hybrid-gamma-unif width=50%}
 
 Estimated recovery rate ($\gamma$) using the Nested and Hybrid Particle Filters with
 flat priors/initial proposals.
@@ -552,9 +552,9 @@ flat priors/initial proposals.
 
 ::: {#fig-1loc-I-weak layout-nrow=2}
 
-![Nested Particle Filter](/nested/gam8_Iest_n1l.png){#fig-nested-I-gam width=50%}
+![Nested Particle Filter](nested/gam8_Iest_n1l.png){#fig-nested-I-gam width=50%}
 
-![Hybrid Particle Filter](/hybrid/gam8_Iest_h1l.png){#fig-hybrid-I-gam width=50%}
+![Hybrid Particle Filter](hybrid/gam8_Iest_h1l.png){#fig-hybrid-I-gam width=50%}
 
 Estimated infectious counts (I) using the Nested and Hybrid Particle Filters with
 weakly informative priors/initial proposals.
@@ -564,9 +564,9 @@ weakly informative priors/initial proposals.
 
 ::: {#fig-1loc-beta-unif layout-nrow=2}
 
-![Nested Particle Filter](/nested/gam8_betaEst_n1l.png){#fig-nested-beta-gam width=50%}
+![Nested Particle Filter](nested/gam8_betaEst_n1l.png){#fig-nested-beta-gam width=50%}
 
-![Hybrid Particle Filter](/hybrid/gam8_betaEst_h1l.png){#fig-hybrid-beta-gam width=50%}
+![Hybrid Particle Filter](hybrid/gam8_betaEst_h1l.png){#fig-hybrid-beta-gam width=50%}
 
 Estimated transmission rate (β) using the Nested and Hybrid Particle Filters with
 weakly informative priors/initial proposals.
@@ -576,9 +576,9 @@ weakly informative priors/initial proposals.
 
 ::: {#fig-1loc-sigma-unif layout-nrow=2}
 
-![Nested Particle Filter](/nested/gam8_sigmaEst_n1l.png){#fig-nested-sigma-gam width=50%}
+![Nested Particle Filter](nested/gam8_sigmaEst_n1l.png){#fig-nested-sigma-gam width=50%}
 
-![Hybrid Particle Filter](/hybrid/gam8_sigmaEst_h1l.png){#fig-hybrid-sigma-gam width=50%}
+![Hybrid Particle Filter](hybrid/gam8_sigmaEst_h1l.png){#fig-hybrid-sigma-gam width=50%}
 
 Estimated incubation rate ($\sigma$) using the Nested and Hybrid Particle Filters with
 weakly informative priors/initial proposals.
@@ -589,9 +589,9 @@ weakly informative priors/initial proposals.
 
 ::: {#fig-1loc-gamma-unif layout-nrow=2}
 
-![Nested Particle Filter](/nested/gam8_gammaEst_n1l.png){#fig-nested-gamma-gam width=50%}
+![Nested Particle Filter](nested/gam8_gammaEst_n1l.png){#fig-nested-gamma-gam width=50%}
 
-![Hybrid Particle Filter](/hybrid/gam8_gammaEst_h1l.png){#fig-hybrid-gamma-gam width=50%}
+![Hybrid Particle Filter](hybrid/gam8_gammaEst_h1l.png){#fig-hybrid-gamma-gam width=50%}
 
 Estimated recovery rate ($\gamma$) using the Nested and Hybrid Particle Filters with
 weakly informative priors/initial proposals.
