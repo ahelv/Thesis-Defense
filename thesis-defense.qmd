@@ -440,7 +440,7 @@ For both Hybrid and Nested Particle Filters, we vary the number of particles and
 
 ::: {#fig-1loc-I layout-nrow=2}
 
-![Nested Particle Filter](/nested/Iest_n1l.png){#fig-nested-I width=50%}
+![Nested Particle Filter](./nested/Iest_n1l.png){#fig-nested-I width=50%}
 
 ![Hybrid Particle Filter](/hybrid/Iest_h1l.png){#fig-hybrid-I width=50%}
 
