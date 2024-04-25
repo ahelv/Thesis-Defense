@@ -137,7 +137,7 @@ The goal of a particle filter is to estimate the posterior, $p(x_t | y_{1:t})$, 
 
 $$p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(x_t | y_{1:t-1})dx_t}$$
 
-- Recursion is used to obtain a complete estimate of the form $p(x_{0:t} | y_{1:t})$
+- Recursion is used to obtain a complete estimate of the form $p(x_{0:t} | y_{1:t})$
 
 ::: {.fragment .fade-in}
 - If the system is both **linear** and **Gaussian** a Kalman filter can be used with no approximation. 
@@ -153,7 +153,7 @@ $$p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(
 
 Particle filter approximation: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
 
-- The set $\{ w_t^i, x_{0:t}^i\}_i^{N_s}$ contains $N_s$ samples, $x_{0:t}^i$ and their weights $w_t^i$.
+- The set $\{ w_t^i, x_{0:t}^i\}_{i=1}^{N_s}$ contains $N_s$ samples, $x_{0:t}^i$ and their weights $w_t^i$.
 
 - Importance density chosen such that $q(x_{0:t}|y_{1:t}) = q(x_t | x_{0:t-1}, y_{1:t}) q(x_{0:t-1}|y_{1:t-1})$ 
 
@@ -677,6 +677,83 @@ $$\frac{dR}{dt} = \lambda * I$$
 
 :::
 
+## Application: Cholera Outbreak
+
+We consider a 103 week cholera outbreak in Haiti from 2010 through 2012.
+
+- Cholera is an acute infection caused by the bacterium *Vibrio cholerae* (*V. cholerae*) which can result in severe diarrhea.
+
+- *V. cholerae* is usually ingested via contaminated food or water and introduced back into the environment through contaminated fecal matter.
+
+    - Known for surviving for long periods of time in fresh, salty, and brackish water.
+
+. . .
+
+- We aim to capture the bacterial spread though Haiti's waterways with political boarders and rainfall data.
+
+    - We do not have data on the size and location of actual waterways or sewage systems. 
+
+. . .
+
+- We devised a fully stochastic, spatial, chain binomial Susceptible-
+Infected-Recovered-Deceased (SIRD) model to estimate weekly cholera case counts in Haiti. 
+
+## Spatial Locations
+
+Haiti is divided into 10 departments: 
+
+![](haiti_map.jpg){width="700" height="500"}
+
+## Data 
+
+The observed data are weakly reported case counts in each of Haiti's 10 departments.
+
+::: {#fig-haiti-dat layout-ncol=2}
+
+![Larger Outbreaks](epid-large.png){#fig-large-epdi height="300"}
+
+![Smaller Outbreaks](epid-small.png){#fig-large-epdi height="300"}
+
+Observed cholera case counts across Haiti from October 17, 2010 to September 30, 2012
+:::
+
+- Additionally, weekly rainfall estimates in each department are reported.
+
+## Concentration of *V. cholerae*
+
+::: {.panel-tabset}
+
+### Mechanism 
+
+The primary driver of the epidemic is the environmental concentration of *V. cholerae* at each location ($B_{(l)}(t)$).
+
+There are two mechanisms through which $B_{(l)}(t)$ changes over time: 
+
+1. Natural death.
+
+2. Infected individuals release contaminated fecal matter, dispersed via rainwater, into the environment. 
+
+::: {.fragment .fade-in}
+$$\frac{d B_{(l)}}{d t} = - (\mu_B \times B_{(l)}(t)) + (\frac{1}{h_{(l)}} \times (1 + r_{(l)}(t)) \times I_{(l)}(t))$$
+:::
+
+### Estimates 
+
+![Concentration of *V. cholerae* in each of Haiti’s 10 departments over the 103 week epidemic. Median concentration estimate (blue line) and 5th-95th percentile bounds (shaded region).](Best_all.png){}
+
+### Discussion
+
+The estimated concentration of *V. cholerae* in the environment decreases over the course of the epidemic in all 10 departments. 
+
+- Consistent with the empirical showing a decline in reported cases overtime.
+
+- Near the end of the surveillance period when reported cases were low, the estimated concentration of *V. cholerae* is similar in all ten of Haiti’s departments. 
+
+    - This is consistent with the reports of underlying levels of contaminants in public water sources in countries that lack adequate sewage treatment systems (Tibbetts, 2000).
+
+:::
+
+
 ## Software
 
 We developed a software package in Julia to implement the Hybrid Particle Filter for compartmental models. 
@@ -702,6 +779,7 @@ Rectanges indicate custom types whereas diamonds indicate convenience functions.
 
 ![Post-processing functions available in HybridParticleFilter.jl. Diamonds
 indicate functions and rectangles indicate output.](post-funcs.png){width="450" height="500"}
+
 
 ## Discussion and Conclusions
 

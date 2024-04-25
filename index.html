@@ -466,7 +466,7 @@ class A,B,C,D iowa
 <p>The goal of a particle filter is to estimate the posterior, <span class="math inline">\(p(x_t | y_{1:t})\)</span>, at each time <span class="math inline">\(t = 0, 1, \dots, T\)</span> using Bayes’ theorem:</p>
 <p><span class="math display">\[p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(x_t | y_{1:t-1})dx_t}\]</span></p>
 <ul>
-<li>Recursion is used to obtain a complete estimate of the form <span class="math inline">\(p(x_{0:t} | y_{1:t})\)</span></li>
+<li>Recursion is used to obtain a complete estimate of the form <span class="math inline">\(p(x_{0:t} | y_{1:t})\)</span></li>
 </ul>
 <div class="fragment fade-in">
 <ul>
@@ -484,7 +484,7 @@ class A,B,C,D iowa
 <h2>Particle Filters Cont.</h2>
 <p>Particle filter approximation: <span class="math inline">\(p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)\)</span></p>
 <ul>
-<li><p>The set <span class="math inline">\(\{ w_t^i, x_{0:t}^i\}_i^{N_s}\)</span> contains <span class="math inline">\(N_s\)</span> samples, <span class="math inline">\(x_{0:t}^i\)</span> and their weights <span class="math inline">\(w_t^i\)</span>.</p></li>
+<li><p>The set <span class="math inline">\(\{ w_t^i, x_{0:t}^i\}_{i=1}^{N_s}\)</span> contains <span class="math inline">\(N_s\)</span> samples, <span class="math inline">\(x_{0:t}^i\)</span> and their weights <span class="math inline">\(w_t^i\)</span>.</p></li>
 <li><p>Importance density chosen such that <span class="math inline">\(q(x_{0:t}|y_{1:t}) = q(x_t | x_{0:t-1}, y_{1:t}) q(x_{0:t-1}|y_{1:t-1})\)</span></p></li>
 <li><p>Samples are drawn from <span class="math inline">\(x_t^i \sim q(x_t| x_{0:t-1}, y_{1:t})\)</span></p></li>
 <li><p>Obtain the full sample <span class="math inline">\(x^i_{0:t}\)</span> recursively by augmenting <span class="math inline">\(x_{0:t-1}^i\)</span> with <span class="math inline">\(x_t^i\)</span></p></li>
@@ -1440,6 +1440,120 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </div>
 </div>
 </section>
+<section id="application-cholera-outbreak" class="slide level2">
+<h2>Application: Cholera Outbreak</h2>
+<p>We consider a 103 week cholera outbreak in Haiti from 2010 through 2012.</p>
+<ul>
+<li><p>Cholera is an acute infection caused by the bacterium <em>Vibrio cholerae</em> (<em>V. cholerae</em>) which can result in severe diarrhea.</p></li>
+<li><p><em>V. cholerae</em> is usually ingested via contaminated food or water and introduced back into the environment through contaminated fecal matter.</p>
+<ul>
+<li>Known for surviving for long periods of time in fresh, salty, and brackish water.</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><p>We aim to capture the bacterial spread though Haiti’s waterways with political boarders and rainfall data.</p>
+<ul>
+<li>We do not have data on the size and location of actual waterways or sewage systems.</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>We devised a fully stochastic, spatial, chain binomial Susceptible- Infected-Recovered-Deceased (SIRD) model to estimate weekly cholera case counts in Haiti.</li>
+</ul>
+</div>
+</section>
+<section id="spatial-locations" class="slide level2">
+<h2>Spatial Locations</h2>
+<p>Haiti is divided into 10 departments:</p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" height="500" width="700">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="haiti_map.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="700" height="500">
+</div>
+</figure>
+</div>
+</section>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<p>The observed data are weakly reported case counts in each of Haiti’s 10 departments.</p>
+<div id="fig-haiti-dat" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-haiti-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-haiti-dat" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-large-epdi" class="quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-large-epdi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="epid-large.png" data-ref-parent="fig-haiti-dat" height="300">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-large-epdi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Larger Outbreaks
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-haiti-dat" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-large-epdi" class="quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-subfloat-fig">
+<div aria-describedby="fig-large-epdi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="epid-small.png" data-ref-parent="fig-haiti-dat" height="300">
+</div>
+<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-large-epdi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Smaller Outbreaks
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-haiti-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 to September 30, 2012
+</figcaption>
+</figure>
+</div>
+<ul>
+<li>Additionally, weekly rainfall estimates in each department are reported.</li>
+</ul>
+</section>
+<section id="concentration-of-v.-cholerae" class="slide level2">
+<h2>Concentration of <em>V. cholerae</em></h2>
+<div class="panel-tabset">
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Mechanism</a></li><li><a href="#tabset-8-2">Estimates</a></li><li><a href="#tabset-8-3">Discussion</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1">
+<p>The primary driver of the epidemic is the environmental concentration of <em>V. cholerae</em> at each location (<span class="math inline">\(B_{(l)}(t)\)</span>).</p>
+<p>There are two mechanisms through which <span class="math inline">\(B_{(l)}(t)\)</span> changes over time:</p>
+<ol type="1">
+<li><p>Natural death.</p></li>
+<li><p>Infected individuals release contaminated fecal matter, dispersed via rainwater, into the environment.</p></li>
+</ol>
+<div class="fragment fade-in">
+<p><span class="math display">\[\frac{d B_{(l)}}{d t} = - (\mu_B \times B_{(l)}(t)) + (\frac{1}{h_{(l)}} \times (1 + r_{(l)}(t)) \times I_{(l)}(t))\]</span></p>
+</div>
+</div>
+<div id="tabset-8-2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Best_all.png"></p>
+<figcaption>Concentration of <em>V. cholerae</em> in each of Haiti’s 10 departments over the 103 week epidemic. Median concentration estimate (blue line) and 5th-95th percentile bounds (shaded region).</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-8-3">
+<p>The estimated concentration of <em>V. cholerae</em> in the environment decreases over the course of the epidemic in all 10 departments.</p>
+<ul>
+<li><p>Consistent with the empirical showing a decline in reported cases overtime.</p></li>
+<li><p>Near the end of the surveillance period when reported cases were low, the estimated concentration of <em>V. cholerae</em> is similar in all ten of Haiti’s departments.</p>
+<ul>
+<li>This is consistent with the reports of underlying levels of contaminants in public water sources in countries that lack adequate sewage treatment systems (Tibbetts, 2000).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 <section id="software" class="slide level2">
 <h2>Software</h2>
 <p>We developed a software package in Julia to implement the Hybrid Particle Filter for compartmental models.</p>
@@ -1497,10 +1611,10 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute quarto-figure quarto-figure-center" data-bottom="0" width="420" data-right="40" height="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="absolute quarto-figure quarto-figure-center" data-right="40" data-bottom="0" height="420" width="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 </div>
 </figure>
 </div>
@@ -1508,10 +1622,10 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions?</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" height="550" width="530">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="quarto-figure quarto-figure-center" height="550" width="530">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="questions.jpeg" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="530" height="550">
+<img data-src="questions.jpeg" id="fig-539a35d47e664c97a50115a146a7f1bd-8" width="530" height="550">
 </div>
 </figure>
 </div>
