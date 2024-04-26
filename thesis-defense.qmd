@@ -146,18 +146,15 @@ $$p(x_t | y_{1:t}) = \frac{p(y_t | x_t) p(x_t | y_{1:t-1})}{\int p(y_t | x_t) p(
 :::
 
 ::: {.fragment .fade-in}
-- Use importance sampling to approximate the continuous pdf with a weighted sum of $N_s$ potential realizations of the true state: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
-:::
+- Use importance sampling to approximate the continuous pdf with a weighted sum of $N_s$ potential realizations of the true state.
 
-## Particle Filters Cont.
-
-Particle filter approximation: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
-
-- The set $\{ w_t^i, x_{0:t}^i\}_{i=1}^{N_s}$ contains $N_s$ samples, $x_{0:t}^i$ and their weights $w_t^i$.
+- Particle filter approximation: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{t}^{i} \delta (x_{0:t} - x_{0:t}^i)$
 
 - Importance density chosen such that $q(x_{0:t}|y_{1:t}) = q(x_t | x_{0:t-1}, y_{1:t}) q(x_{0:t-1}|y_{1:t-1})$ 
 
 - Samples are drawn from $x_t^i \sim q(x_t| x_{0:t-1}, y_{1:t})$ 
+
+- The set $\{ w_t^i, x_{0:t}^i\}_{i=1}^{N_s}$ contains $N_s$ samples, $x_{0:t}^i$ and their weights $w_t^i$.
 
 - Obtain the full sample $x^i_{0:t}$ recursively by augmenting $x_{0:t-1}^i$ with $x_t^i$
 
@@ -165,7 +162,9 @@ Particle filter approximation: $p(x_{0:t}| y_{1:t}) \approx \sum_{i=1}^{N_s} w_{
 
 - The weights are then normalized so $\sum_{i=1}^{N_s} w_t^i = 1$
 
-## Particle Filter Components.
+:::
+
+## Particle Filter Components
 
 To carryout the approximation, particle filters require: 
 
@@ -175,7 +174,7 @@ To carryout the approximation, particle filters require:
 
 . . .
 
-- Assumes $x_{t:1}$ is a Markov chain
+- Assumes $x_{0:t}$ is a Markov chain
 
     - $p(x_t | x_{1:t-1}, y_{1:t-1}) = p(x_t | x_{t-1})$
 
@@ -262,7 +261,7 @@ Particle filters are widely used and well documented, but have some notable shor
 
 ### Algorithm
 
-![](nested-alg.png){width="700" height="700"}
+![](nested-alg.png){width="750" height="700"}
 
 ### Assumptions 
 
@@ -780,6 +779,270 @@ Rectanges indicate custom types whereas diamonds indicate convenience functions.
 ![Post-processing functions available in HybridParticleFilter.jl. Diamonds
 indicate functions and rectangles indicate output.](post-funcs.png){width="450" height="500"}
 
+## Code Demonstration {auto-animate="true"}
+
+```julia
+Nt = 365
+Nloc = 1
+N = 50
+M = 50
+p = 3
+```
+
+## Code Demonstration {auto-animate="true" visibility="uncounted"}
+
+```julia
+Nt = 365
+Nloc = 1
+N = 50
+M = 50
+p = 3
+# ODE for SE, EI, IR transitions
+odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
+odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
+odeIR(; S, E, I, R, Np, σ, γ, β, Nloc) = γ
+# make transition functions from ODE
+SE = makeTrans(odeSE, :S, :E)
+EI = makeTrans(odeEI, :E, :I)
+IR = makeTrans(odeIR, :I, :R)
+transitions = [SE, EI, IR]
+```
+
+## Code Demonstration {auto-animate="true" visibility="uncounted"}
+
+```julia
+Nt = 365
+Nloc = 1
+N = 50
+M = 50
+p = 3
+# ODE for SE, EI, IR transitions
+odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
+odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
+odeIR(; S, E, I, R, Np, σ, γ, β, Nloc) = γ
+# make transition functions from ODE
+SE = makeTrans(odeSE, :S, :E)
+EI = makeTrans(odeEI, :E, :I)
+IR = makeTrans(odeIR, :I, :R)
+transitions = [SE, EI, IR]
+θ = (; Np=60000, σ=0.2, γ=0.1, β=0.2)
+
+# set initial compartment values
+compartments = (S=zeros(Float16, nLoc) .+ 59990,
+    E=zeros(Float16, nLoc) + fill(0, nLoc),
+    I=zeros(Float16, nLoc) + fill(0, nLoc),
+    R=zeros(Float16, nLoc))
+compartments[:E][1] = 3
+compartments[:I][1] = 7
+```
+
+## Code Demonstration {auto-animate="true" visibility="uncounted"}
+
+```julia
+Nt = 365
+Nloc = 1
+N = 50
+M = 50
+p = 3
+# ODE for SE, EI, IR transitions
+odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
+odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
+odeIR(; S, E, I, R, Np, σ, γ, β, Nloc) = γ
+# make transition functions from ODE
+SE = makeTrans(odeSE, :S, :E)
+EI = makeTrans(odeEI, :E, :I)
+IR = makeTrans(odeIR, :I, :R)
+transitions = [SE, EI, IR]
+θ = (; Np=60000, σ=0.2, γ=0.1, β=0.2)
+
+# set initial compartment values
+compartments = (S=zeros(Float16, nLoc) .+ 59990,
+    E=zeros(Float16, nLoc) + fill(0, nLoc),
+    I=zeros(Float16, nLoc) + fill(0, nLoc),
+    R=zeros(Float16, nLoc))
+compartments[:E][1] = 3
+compartments[:I][1] = 7
+
+# simulate and epidemic
+Random.seed!(3453)
+simEp, simPar = simEpidemic(Nt, θ, compartments, transitions, nLoc);
+
+# prepare "under-reported" cases
+ysim = [simEp[:I][:, t] for t in 1:365]
+yobs = rand.(MultPoisson.(ysim * 0.5));
+```
+
+## Code Demonstration {auto-animate="true" visibility="uncounted"}
+
+
+```julia
+Nt = 365
+Nloc = 1
+N = 50
+M = 50
+p = 3
+# ODE for SE, EI, IR transitions
+odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
+odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
+odeIR(; S, E, I, R, Np, σ, γ, β, Nloc) = γ
+# make transition functions from ODE
+SE = makeTrans(odeSE, :S, :E)
+EI = makeTrans(odeEI, :E, :I)
+IR = makeTrans(odeIR, :I, :R)
+transitions = [SE, EI, IR]
+θ = (; Np=60000, σ=0.2, γ=0.1, β=0.2)
+
+# set initial compartment values
+compartments = (S=zeros(Float16, nLoc) .+ 59990,
+    E=zeros(Float16, nLoc) + fill(0, nLoc),
+    I=zeros(Float16, nLoc) + fill(0, nLoc),
+    R=zeros(Float16, nLoc))
+compartments[:E][1] = 3
+compartments[:I][1] = 7
+
+# simulate and epidemic
+Random.seed!(3453)
+simEp, simPar = simEpidemic(Nt, θ, compartments, transitions, nLoc);
+
+# prepare "under-reported" cases
+ysim = [simEp[:I][:, t] for t in 1:365]
+yobs = rand.(MultPoisson.(ysim * 0.5));
+
+# add components for particle filter
+## measurement function
+function g(y, particles, changes, data, n, θ, θt, t, Nloc)
+    μ = particles[:I][n, :, t]
+    logpdf.(MultPoisson.(μ), [y[t] .* 2])
+end
+
+# priors/initial proposals
+βprop = makeProposal(Gamma(8, 0.025), :β)
+σprop = makeProposal(Gamma(8, 0.025), :σ)
+γprop = makeProposal(Gamma(8, 0.0125), :γ)
+proposals = [βprop, σprop, γprop]
+
+# known parameters
+θ = (; Np=60000)
+```
+
+## Code Demonstration {auto-animate="true" visibility="uncounted"}
+
+```julia
+Nt = 365
+Nloc = 1
+N = 50
+M = 50
+p = 3
+# ODE for SE, EI, IR transitions
+odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
+odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
+odeIR(; S, E, I, R, Np, σ, γ, β, Nloc) = γ
+# make transition functions from ODE
+SE = makeTrans(odeSE, :S, :E)
+EI = makeTrans(odeEI, :E, :I)
+IR = makeTrans(odeIR, :I, :R)
+transitions = [SE, EI, IR]
+θ = (; Np=60000, σ=0.2, γ=0.1, β=0.2)
+
+# set initial compartment values
+compartments = (S=zeros(Float16, nLoc) .+ 59990,
+    E=zeros(Float16, nLoc) + fill(0, nLoc),
+    I=zeros(Float16, nLoc) + fill(0, nLoc),
+    R=zeros(Float16, nLoc))
+compartments[:E][1] = 3
+compartments[:I][1] = 7
+
+# simulate and epidemic
+Random.seed!(3453)
+simEp, simPar = simEpidemic(Nt, θ, compartments, transitions, nLoc);
+
+# prepare "under-reported" cases
+ysim = [simEp[:I][:, t] for t in 1:365]
+yobs = rand.(MultPoisson.(ysim * 0.5));
+
+# add components for particle filter
+## measurement function
+function g(y, particles, changes, data, n, θ, θt, t, Nloc)
+    μ = particles[:I][n, :, t]
+    logpdf.(MultPoisson.(μ), [y[t] .* 2])
+end
+
+# priors/initial proposals
+βprop = makeProposal(Gamma(8, 0.025), :β)
+σprop = makeProposal(Gamma(8, 0.025), :σ)
+γprop = makeProposal(Gamma(8, 0.0125), :γ)
+proposals = [βprop, σprop, γprop]
+
+# known parameters
+θ = (; Np=60000)
+
+## run hybrid particle filter
+out = pf_hybrid2(yobs, N, M, θ, g, compartments, transitions, proposals; p=p)
+Iest = getstate(out[1], :I, 1, out[4])
+```
+
+## Code Demonstration {auto-animate="true" visibility="uncounted"}
+
+```julia
+Nt = 365
+Nloc = 1
+N = 50
+M = 50
+p = 3
+# ODE for SE, EI, IR transitions
+odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
+odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
+odeIR(; S, E, I, R, Np, σ, γ, β, Nloc) = γ
+# make transition functions from ODE
+SE = makeTrans(odeSE, :S, :E)
+EI = makeTrans(odeEI, :E, :I)
+IR = makeTrans(odeIR, :I, :R)
+transitions = [SE, EI, IR]
+θ = (; Np=60000, σ=0.2, γ=0.1, β=0.2)
+
+# set initial compartment values
+compartments = (S=zeros(Float16, nLoc) .+ 59990,
+    E=zeros(Float16, nLoc) + fill(0, nLoc),
+    I=zeros(Float16, nLoc) + fill(0, nLoc),
+    R=zeros(Float16, nLoc))
+compartments[:E][1] = 3
+compartments[:I][1] = 7
+
+# simulate and epidemic
+Random.seed!(3453)
+simEp, simPar = simEpidemic(Nt, θ, compartments, transitions, nLoc);
+
+# prepare "under-reported" cases
+ysim = [simEp[:I][:, t] for t in 1:365]
+yobs = rand.(MultPoisson.(ysim * 0.5));
+
+# add components for particle filter
+## measurement function
+function g(y, particles, changes, data, n, θ, θt, t, Nloc)
+    μ = particles[:I][n, :, t]
+    logpdf.(MultPoisson.(μ), [y[t] .* 2])
+end
+
+# priors/initial proposals
+βprop = makeProposal(Gamma(8, 0.025), :β)
+σprop = makeProposal(Gamma(8, 0.025), :σ)
+γprop = makeProposal(Gamma(8, 0.0125), :γ)
+proposals = [βprop, σprop, γprop]
+
+# known parameters
+θ = (; Np=60000)
+
+## run hybrid particle filter
+out = pf_hybrid2(yobs, N, M, θ, g, compartments, transitions, proposals; p=p)
+Iest = getstate(out[1], :I, 1, out[4])
+
+# plot results 
+plot([simEp[:I][1, :], Iest, first.(yobs)], color=[:red :dodgerblue2 :green], label=["Truth" "Estimate" "Observed"], legend=:outertopright)
+```
+
+## Code Demonstration {auto-animate="true" visibility="uncounted"}
+
+![](demo_I.png){width="650" height="400"}
 
 ## Discussion and Conclusions
 
