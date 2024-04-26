@@ -760,7 +760,7 @@ We developed a software package in Julia to implement the Hybrid Particle Filter
 
 - The package also implements the Nested Particle Filter.
 
-- Any compartmental model structure can be specific. 
+- Any compartmental model structure can be specified. 
 
 - Supports stochastic and deterministic transition equations. 
 
