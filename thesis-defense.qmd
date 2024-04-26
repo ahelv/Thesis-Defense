@@ -36,8 +36,9 @@ This thesis consists of three components:
 4. Hybrid Particle Filter 
 5. Simulation Study 
 6. Algorithm Speed 
-7. Software
-8. Discussion
+7. Application
+8. Software
+9. Discussion
 
 ## Motivation
 
