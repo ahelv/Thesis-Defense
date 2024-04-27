@@ -573,7 +573,7 @@ class A,B,C,D iowa
 <section id="sequential-importance-sampling-sis" class="slide level2">
 <h2>Sequential Importance Sampling (SIS)</h2>
 <p>The basis of all particle filtering schemes is SIS:</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="700" height="350">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" height="350" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="SIS.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="700" height="350">
@@ -583,7 +583,7 @@ class A,B,C,D iowa
 </section>
 <section id="toy-demonstration" class="slide level2">
 <h2>Toy Demonstration</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="700" height="500">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" height="500" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="particle_filter.gif" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="700" height="500">
@@ -664,7 +664,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-1-2">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="750" height="700">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" height="700" width="750">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="nested-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="750" height="700">
@@ -752,7 +752,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-2-3">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="790" height="890">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" height="890" width="790">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="hybrid-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="790" height="890">
@@ -1333,7 +1333,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="simulation-summary" class="slide level2">
 <h2>Simulation Summary</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" width="600" height="850">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" height="850" width="600">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="MSE_1loc.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" width="600" height="850">
@@ -1358,7 +1358,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <div class="tab-content">
 <div id="tabset-7-1">
 <ul>
-<li><p>We compared the time required to conduct esttimation (clock time) with the Hybrid and Nested Particle Filters as well as an MCMC approach.</p></li>
+<li><p>We compared the time required to conduct estimation (clock time) with the Hybrid and Nested Particle Filters as well as an MCMC approach.</p></li>
 <li><p>In order to reach convergence with MCMC we were limited to a simple, single location SIR model with two parameters.</p></li>
 <li><p>Effective sample size (ESS) is not compared because a single measure of ESS for a particle filter is not attainable.</p></li>
 <li><p>All timing was done with the BenchmarkTools.jl package and all algorithms were tested using Julia 1.10.0 on an Mac with Apple M1 CPU (3.2GHz) with 8 GB memory.</p></li>
@@ -1528,7 +1528,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <section id="spatial-locations" class="slide level2">
 <h2>Spatial Locations</h2>
 <p>Haiti is divided into 10 departments:</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" width="700" height="500">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" height="500" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="haiti_map.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="700" height="500">
@@ -1653,8 +1653,8 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <span id="cb1-4" class="hljs-ln-code"><a href="#cb1-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
 <span id="cb1-5" class="hljs-ln-code"><a href="#cb1-5"></a>p <span class="op">=</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-demonstration-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
+<section id="code-demonstration-simulating-data" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Code Demonstration: Simulating Data</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb2-1" class="hljs-ln-code"><a href="#cb2-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
 <span id="cb2-2" class="hljs-ln-code"><a href="#cb2-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
 <span id="cb2-3" class="hljs-ln-code"><a href="#cb2-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
@@ -1670,8 +1670,8 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <span id="cb2-13" class="hljs-ln-code"><a href="#cb2-13"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
 <span id="cb2-14" class="hljs-ln-code"><a href="#cb2-14"></a>transitions <span class="op">=</span> [SE, EI, IR]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-demonstration-2" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
+<section id="code-demonstration-simulating-data-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Code Demonstration: Simulating Data</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb3-1" class="hljs-ln-code"><a href="#cb3-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
 <span id="cb3-2" class="hljs-ln-code"><a href="#cb3-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
 <span id="cb3-3" class="hljs-ln-code"><a href="#cb3-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
@@ -1696,204 +1696,111 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <span id="cb3-22" class="hljs-ln-code"><a href="#cb3-22"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
 <span id="cb3-23" class="hljs-ln-code"><a href="#cb3-23"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-demonstration-3" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
+<section id="code-demonstration-simulating-data-2" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Code Demonstration: Simulating Data</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb4-1" class="hljs-ln-code"><a href="#cb4-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
 <span id="cb4-2" class="hljs-ln-code"><a href="#cb4-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb4-3" class="hljs-ln-code"><a href="#cb4-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb4-4" class="hljs-ln-code"><a href="#cb4-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb4-5" class="hljs-ln-code"><a href="#cb4-5"></a>p <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb4-6" class="hljs-ln-code"><a href="#cb4-6"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
-<span id="cb4-7" class="hljs-ln-code"><a href="#cb4-7"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
-<span id="cb4-8" class="hljs-ln-code"><a href="#cb4-8"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
-<span id="cb4-9" class="hljs-ln-code"><a href="#cb4-9"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
-<span id="cb4-10" class="hljs-ln-code"><a href="#cb4-10"></a><span class="co"># make transition functions from ODE</span></span>
-<span id="cb4-11" class="hljs-ln-code"><a href="#cb4-11"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
-<span id="cb4-12" class="hljs-ln-code"><a href="#cb4-12"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
-<span id="cb4-13" class="hljs-ln-code"><a href="#cb4-13"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
-<span id="cb4-14" class="hljs-ln-code"><a href="#cb4-14"></a>transitions <span class="op">=</span> [SE, EI, IR]</span>
-<span id="cb4-15" class="hljs-ln-code"><a href="#cb4-15"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>, σ<span class="op">=</span><span class="fl">0.2</span>, γ<span class="op">=</span><span class="fl">0.1</span>, β<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb4-16" class="hljs-ln-code"><a href="#cb4-16"></a></span>
-<span id="cb4-17" class="hljs-ln-code"><a href="#cb4-17"></a><span class="co"># set initial compartment values</span></span>
-<span id="cb4-18" class="hljs-ln-code"><a href="#cb4-18"></a>compartments <span class="op">=</span> (S<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">.+</span> <span class="fl">59990</span>,</span>
-<span id="cb4-19" class="hljs-ln-code"><a href="#cb4-19"></a>    E<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb4-20" class="hljs-ln-code"><a href="#cb4-20"></a>    I<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb4-21" class="hljs-ln-code"><a href="#cb4-21"></a>    R<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc))</span>
-<span id="cb4-22" class="hljs-ln-code"><a href="#cb4-22"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb4-23" class="hljs-ln-code"><a href="#cb4-23"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span>
-<span id="cb4-24" class="hljs-ln-code"><a href="#cb4-24"></a></span>
-<span id="cb4-25" class="hljs-ln-code"><a href="#cb4-25"></a><span class="co"># simulate and epidemic</span></span>
-<span id="cb4-26" class="hljs-ln-code"><a href="#cb4-26"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">3453</span>)</span>
-<span id="cb4-27" class="hljs-ln-code"><a href="#cb4-27"></a>simEp, simPar <span class="op">=</span> <span class="fu">simEpidemic</span>(Nt, θ, compartments, transitions, nLoc);</span>
-<span id="cb4-28" class="hljs-ln-code"><a href="#cb4-28"></a></span>
-<span id="cb4-29" class="hljs-ln-code"><a href="#cb4-29"></a><span class="co"># prepare "under-reported" cases</span></span>
-<span id="cb4-30" class="hljs-ln-code"><a href="#cb4-30"></a>ysim <span class="op">=</span> [simEp[<span class="op">:</span>I][<span class="op">:</span>, t] for t <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">365</span>]</span>
-<span id="cb4-31" class="hljs-ln-code"><a href="#cb4-31"></a>yobs <span class="op">=</span> <span class="fu">rand</span>.(<span class="fu">MultPoisson</span>.(ysim <span class="op">*</span> <span class="fl">0.5</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3" class="hljs-ln-code"><a href="#cb4-3"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
+<span id="cb4-4" class="hljs-ln-code"><a href="#cb4-4"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
+<span id="cb4-5" class="hljs-ln-code"><a href="#cb4-5"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
+<span id="cb4-6" class="hljs-ln-code"><a href="#cb4-6"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
+<span id="cb4-7" class="hljs-ln-code"><a href="#cb4-7"></a><span class="co"># make transition functions from ODE</span></span>
+<span id="cb4-8" class="hljs-ln-code"><a href="#cb4-8"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
+<span id="cb4-9" class="hljs-ln-code"><a href="#cb4-9"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
+<span id="cb4-10" class="hljs-ln-code"><a href="#cb4-10"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
+<span id="cb4-11" class="hljs-ln-code"><a href="#cb4-11"></a>transitions <span class="op">=</span> [SE, EI, IR]</span>
+<span id="cb4-12" class="hljs-ln-code"><a href="#cb4-12"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>, σ<span class="op">=</span><span class="fl">0.2</span>, γ<span class="op">=</span><span class="fl">0.1</span>, β<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb4-13" class="hljs-ln-code"><a href="#cb4-13"></a></span>
+<span id="cb4-14" class="hljs-ln-code"><a href="#cb4-14"></a><span class="co"># set initial compartment values</span></span>
+<span id="cb4-15" class="hljs-ln-code"><a href="#cb4-15"></a>compartments <span class="op">=</span> (S<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">.+</span> <span class="fl">59990</span>,</span>
+<span id="cb4-16" class="hljs-ln-code"><a href="#cb4-16"></a>    E<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
+<span id="cb4-17" class="hljs-ln-code"><a href="#cb4-17"></a>    I<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
+<span id="cb4-18" class="hljs-ln-code"><a href="#cb4-18"></a>    R<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc))</span>
+<span id="cb4-19" class="hljs-ln-code"><a href="#cb4-19"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb4-20" class="hljs-ln-code"><a href="#cb4-20"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span>
+<span id="cb4-21" class="hljs-ln-code"><a href="#cb4-21"></a></span>
+<span id="cb4-22" class="hljs-ln-code"><a href="#cb4-22"></a><span class="co"># simulate and epidemic</span></span>
+<span id="cb4-23" class="hljs-ln-code"><a href="#cb4-23"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">3453</span>)</span>
+<span id="cb4-24" class="hljs-ln-code"><a href="#cb4-24"></a>simEp, simPar <span class="op">=</span> <span class="fu">simEpidemic</span>(Nt, θ, compartments, transitions, nLoc);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-demonstration-4" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb5-1" class="hljs-ln-code"><a href="#cb5-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
-<span id="cb5-2" class="hljs-ln-code"><a href="#cb5-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb5-3" class="hljs-ln-code"><a href="#cb5-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb5-4" class="hljs-ln-code"><a href="#cb5-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb5-5" class="hljs-ln-code"><a href="#cb5-5"></a>p <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb5-6" class="hljs-ln-code"><a href="#cb5-6"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
-<span id="cb5-7" class="hljs-ln-code"><a href="#cb5-7"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
-<span id="cb5-8" class="hljs-ln-code"><a href="#cb5-8"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
-<span id="cb5-9" class="hljs-ln-code"><a href="#cb5-9"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
-<span id="cb5-10" class="hljs-ln-code"><a href="#cb5-10"></a><span class="co"># make transition functions from ODE</span></span>
-<span id="cb5-11" class="hljs-ln-code"><a href="#cb5-11"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
-<span id="cb5-12" class="hljs-ln-code"><a href="#cb5-12"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
-<span id="cb5-13" class="hljs-ln-code"><a href="#cb5-13"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
-<span id="cb5-14" class="hljs-ln-code"><a href="#cb5-14"></a>transitions <span class="op">=</span> [SE, EI, IR]</span>
-<span id="cb5-15" class="hljs-ln-code"><a href="#cb5-15"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>, σ<span class="op">=</span><span class="fl">0.2</span>, γ<span class="op">=</span><span class="fl">0.1</span>, β<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb5-16" class="hljs-ln-code"><a href="#cb5-16"></a></span>
-<span id="cb5-17" class="hljs-ln-code"><a href="#cb5-17"></a><span class="co"># set initial compartment values</span></span>
-<span id="cb5-18" class="hljs-ln-code"><a href="#cb5-18"></a>compartments <span class="op">=</span> (S<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">.+</span> <span class="fl">59990</span>,</span>
-<span id="cb5-19" class="hljs-ln-code"><a href="#cb5-19"></a>    E<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb5-20" class="hljs-ln-code"><a href="#cb5-20"></a>    I<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb5-21" class="hljs-ln-code"><a href="#cb5-21"></a>    R<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc))</span>
-<span id="cb5-22" class="hljs-ln-code"><a href="#cb5-22"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb5-23" class="hljs-ln-code"><a href="#cb5-23"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span>
-<span id="cb5-24" class="hljs-ln-code"><a href="#cb5-24"></a></span>
-<span id="cb5-25" class="hljs-ln-code"><a href="#cb5-25"></a><span class="co"># simulate and epidemic</span></span>
-<span id="cb5-26" class="hljs-ln-code"><a href="#cb5-26"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">3453</span>)</span>
-<span id="cb5-27" class="hljs-ln-code"><a href="#cb5-27"></a>simEp, simPar <span class="op">=</span> <span class="fu">simEpidemic</span>(Nt, θ, compartments, transitions, nLoc);</span>
-<span id="cb5-28" class="hljs-ln-code"><a href="#cb5-28"></a></span>
-<span id="cb5-29" class="hljs-ln-code"><a href="#cb5-29"></a><span class="co"># prepare "under-reported" cases</span></span>
-<span id="cb5-30" class="hljs-ln-code"><a href="#cb5-30"></a>ysim <span class="op">=</span> [simEp[<span class="op">:</span>I][<span class="op">:</span>, t] for t <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">365</span>]</span>
-<span id="cb5-31" class="hljs-ln-code"><a href="#cb5-31"></a>yobs <span class="op">=</span> <span class="fu">rand</span>.(<span class="fu">MultPoisson</span>.(ysim <span class="op">*</span> <span class="fl">0.5</span>));</span>
-<span id="cb5-32" class="hljs-ln-code"><a href="#cb5-32"></a></span>
-<span id="cb5-33" class="hljs-ln-code"><a href="#cb5-33"></a><span class="co"># add components for particle filter</span></span>
-<span id="cb5-34" class="hljs-ln-code"><a href="#cb5-34"></a><span class="co">## measurement function</span></span>
-<span id="cb5-35" class="hljs-ln-code"><a href="#cb5-35"></a><span class="kw">function</span> <span class="fu">g</span>(y, particles, changes, data, n, θ, θt, t, Nloc)</span>
-<span id="cb5-36" class="hljs-ln-code"><a href="#cb5-36"></a>    μ <span class="op">=</span> particles[<span class="op">:</span>I][n, <span class="op">:</span>, t]</span>
-<span id="cb5-37" class="hljs-ln-code"><a href="#cb5-37"></a>    <span class="fu">logpdf</span>.(<span class="fu">MultPoisson</span>.(μ), [y[t] <span class="op">.*</span> <span class="fl">2</span>])</span>
-<span id="cb5-38" class="hljs-ln-code"><a href="#cb5-38"></a><span class="kw">end</span></span>
-<span id="cb5-39" class="hljs-ln-code"><a href="#cb5-39"></a></span>
-<span id="cb5-40" class="hljs-ln-code"><a href="#cb5-40"></a><span class="co"># priors/initial proposals</span></span>
-<span id="cb5-41" class="hljs-ln-code"><a href="#cb5-41"></a>βprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.025</span>), <span class="op">:</span>β)</span>
-<span id="cb5-42" class="hljs-ln-code"><a href="#cb5-42"></a>σprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.025</span>), <span class="op">:</span>σ)</span>
-<span id="cb5-43" class="hljs-ln-code"><a href="#cb5-43"></a>γprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.0125</span>), <span class="op">:</span>γ)</span>
-<span id="cb5-44" class="hljs-ln-code"><a href="#cb5-44"></a>proposals <span class="op">=</span> [βprop, σprop, γprop]</span>
-<span id="cb5-45" class="hljs-ln-code"><a href="#cb5-45"></a></span>
-<span id="cb5-46" class="hljs-ln-code"><a href="#cb5-46"></a><span class="co"># known parameters</span></span>
-<span id="cb5-47" class="hljs-ln-code"><a href="#cb5-47"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="code-demonstration-particle-filter" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Code Demonstration: Particle Filter</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb5-1" class="hljs-ln-code"><a href="#cb5-1"></a><span class="co"># prepare "under-reported" cases</span></span>
+<span id="cb5-2" class="hljs-ln-code"><a href="#cb5-2"></a>ysim <span class="op">=</span> [simEp[<span class="op">:</span>I][<span class="op">:</span>, t] for t <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">365</span>]</span>
+<span id="cb5-3" class="hljs-ln-code"><a href="#cb5-3"></a>yobs <span class="op">=</span> <span class="fu">rand</span>.(<span class="fu">MultPoisson</span>.(ysim <span class="op">*</span> <span class="fl">0.5</span>));</span>
+<span id="cb5-4" class="hljs-ln-code"><a href="#cb5-4"></a></span>
+<span id="cb5-5" class="hljs-ln-code"><a href="#cb5-5"></a><span class="co"># add components for particle filter</span></span>
+<span id="cb5-6" class="hljs-ln-code"><a href="#cb5-6"></a><span class="co">## measurement function</span></span>
+<span id="cb5-7" class="hljs-ln-code"><a href="#cb5-7"></a><span class="kw">function</span> <span class="fu">g</span>(y, particles, changes, data, n, θ, θt, t, Nloc)</span>
+<span id="cb5-8" class="hljs-ln-code"><a href="#cb5-8"></a>    μ <span class="op">=</span> particles[<span class="op">:</span>I][n, <span class="op">:</span>, t]</span>
+<span id="cb5-9" class="hljs-ln-code"><a href="#cb5-9"></a>    <span class="fu">logpdf</span>.(<span class="fu">MultPoisson</span>.(μ), [y[t] <span class="op">.*</span> <span class="fl">2</span>])</span>
+<span id="cb5-10" class="hljs-ln-code"><a href="#cb5-10"></a><span class="kw">end</span></span>
+<span id="cb5-11" class="hljs-ln-code"><a href="#cb5-11"></a></span>
+<span id="cb5-12" class="hljs-ln-code"><a href="#cb5-12"></a><span class="co"># priors/initial proposals</span></span>
+<span id="cb5-13" class="hljs-ln-code"><a href="#cb5-13"></a>βprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>β)</span>
+<span id="cb5-14" class="hljs-ln-code"><a href="#cb5-14"></a>σprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>σ)</span>
+<span id="cb5-15" class="hljs-ln-code"><a href="#cb5-15"></a>γprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>γ)</span>
+<span id="cb5-16" class="hljs-ln-code"><a href="#cb5-16"></a>proposals <span class="op">=</span> [βprop, σprop, γprop]</span>
+<span id="cb5-17" class="hljs-ln-code"><a href="#cb5-17"></a></span>
+<span id="cb5-18" class="hljs-ln-code"><a href="#cb5-18"></a><span class="co"># known parameters</span></span>
+<span id="cb5-19" class="hljs-ln-code"><a href="#cb5-19"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-demonstration-5" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb6-1" class="hljs-ln-code"><a href="#cb6-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
-<span id="cb6-2" class="hljs-ln-code"><a href="#cb6-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb6-3" class="hljs-ln-code"><a href="#cb6-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb6-4" class="hljs-ln-code"><a href="#cb6-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb6-5" class="hljs-ln-code"><a href="#cb6-5"></a>p <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb6-6" class="hljs-ln-code"><a href="#cb6-6"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
-<span id="cb6-7" class="hljs-ln-code"><a href="#cb6-7"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
-<span id="cb6-8" class="hljs-ln-code"><a href="#cb6-8"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
-<span id="cb6-9" class="hljs-ln-code"><a href="#cb6-9"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
-<span id="cb6-10" class="hljs-ln-code"><a href="#cb6-10"></a><span class="co"># make transition functions from ODE</span></span>
-<span id="cb6-11" class="hljs-ln-code"><a href="#cb6-11"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
-<span id="cb6-12" class="hljs-ln-code"><a href="#cb6-12"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
-<span id="cb6-13" class="hljs-ln-code"><a href="#cb6-13"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
-<span id="cb6-14" class="hljs-ln-code"><a href="#cb6-14"></a>transitions <span class="op">=</span> [SE, EI, IR]</span>
-<span id="cb6-15" class="hljs-ln-code"><a href="#cb6-15"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>, σ<span class="op">=</span><span class="fl">0.2</span>, γ<span class="op">=</span><span class="fl">0.1</span>, β<span class="op">=</span><span class="fl">0.2</span>)</span>
+<section id="code-demonstration-particle-filter-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Code Demonstration: Particle Filter</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb6-1" class="hljs-ln-code"><a href="#cb6-1"></a><span class="co"># add components for particle filter</span></span>
+<span id="cb6-2" class="hljs-ln-code"><a href="#cb6-2"></a><span class="co">## measurement function</span></span>
+<span id="cb6-3" class="hljs-ln-code"><a href="#cb6-3"></a><span class="kw">function</span> <span class="fu">g</span>(y, particles, changes, data, n, θ, θt, t, Nloc)</span>
+<span id="cb6-4" class="hljs-ln-code"><a href="#cb6-4"></a>    μ <span class="op">=</span> particles[<span class="op">:</span>I][n, <span class="op">:</span>, t]</span>
+<span id="cb6-5" class="hljs-ln-code"><a href="#cb6-5"></a>    <span class="fu">logpdf</span>.(<span class="fu">MultPoisson</span>.(μ), [y[t] <span class="op">.*</span> <span class="fl">2</span>])</span>
+<span id="cb6-6" class="hljs-ln-code"><a href="#cb6-6"></a><span class="kw">end</span></span>
+<span id="cb6-7" class="hljs-ln-code"><a href="#cb6-7"></a></span>
+<span id="cb6-8" class="hljs-ln-code"><a href="#cb6-8"></a><span class="co"># priors/initial proposals</span></span>
+<span id="cb6-9" class="hljs-ln-code"><a href="#cb6-9"></a>βprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>β)</span>
+<span id="cb6-10" class="hljs-ln-code"><a href="#cb6-10"></a>σprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>σ)</span>
+<span id="cb6-11" class="hljs-ln-code"><a href="#cb6-11"></a>γprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>γ)</span>
+<span id="cb6-12" class="hljs-ln-code"><a href="#cb6-12"></a>proposals <span class="op">=</span> [βprop, σprop, γprop]</span>
+<span id="cb6-13" class="hljs-ln-code"><a href="#cb6-13"></a></span>
+<span id="cb6-14" class="hljs-ln-code"><a href="#cb6-14"></a><span class="co"># known parameters</span></span>
+<span id="cb6-15" class="hljs-ln-code"><a href="#cb6-15"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>)</span>
 <span id="cb6-16" class="hljs-ln-code"><a href="#cb6-16"></a></span>
-<span id="cb6-17" class="hljs-ln-code"><a href="#cb6-17"></a><span class="co"># set initial compartment values</span></span>
-<span id="cb6-18" class="hljs-ln-code"><a href="#cb6-18"></a>compartments <span class="op">=</span> (S<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">.+</span> <span class="fl">59990</span>,</span>
-<span id="cb6-19" class="hljs-ln-code"><a href="#cb6-19"></a>    E<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb6-20" class="hljs-ln-code"><a href="#cb6-20"></a>    I<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb6-21" class="hljs-ln-code"><a href="#cb6-21"></a>    R<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc))</span>
-<span id="cb6-22" class="hljs-ln-code"><a href="#cb6-22"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb6-23" class="hljs-ln-code"><a href="#cb6-23"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span>
-<span id="cb6-24" class="hljs-ln-code"><a href="#cb6-24"></a></span>
-<span id="cb6-25" class="hljs-ln-code"><a href="#cb6-25"></a><span class="co"># simulate and epidemic</span></span>
-<span id="cb6-26" class="hljs-ln-code"><a href="#cb6-26"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">3453</span>)</span>
-<span id="cb6-27" class="hljs-ln-code"><a href="#cb6-27"></a>simEp, simPar <span class="op">=</span> <span class="fu">simEpidemic</span>(Nt, θ, compartments, transitions, nLoc);</span>
-<span id="cb6-28" class="hljs-ln-code"><a href="#cb6-28"></a></span>
-<span id="cb6-29" class="hljs-ln-code"><a href="#cb6-29"></a><span class="co"># prepare "under-reported" cases</span></span>
-<span id="cb6-30" class="hljs-ln-code"><a href="#cb6-30"></a>ysim <span class="op">=</span> [simEp[<span class="op">:</span>I][<span class="op">:</span>, t] for t <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">365</span>]</span>
-<span id="cb6-31" class="hljs-ln-code"><a href="#cb6-31"></a>yobs <span class="op">=</span> <span class="fu">rand</span>.(<span class="fu">MultPoisson</span>.(ysim <span class="op">*</span> <span class="fl">0.5</span>));</span>
-<span id="cb6-32" class="hljs-ln-code"><a href="#cb6-32"></a></span>
-<span id="cb6-33" class="hljs-ln-code"><a href="#cb6-33"></a><span class="co"># add components for particle filter</span></span>
-<span id="cb6-34" class="hljs-ln-code"><a href="#cb6-34"></a><span class="co">## measurement function</span></span>
-<span id="cb6-35" class="hljs-ln-code"><a href="#cb6-35"></a><span class="kw">function</span> <span class="fu">g</span>(y, particles, changes, data, n, θ, θt, t, Nloc)</span>
-<span id="cb6-36" class="hljs-ln-code"><a href="#cb6-36"></a>    μ <span class="op">=</span> particles[<span class="op">:</span>I][n, <span class="op">:</span>, t]</span>
-<span id="cb6-37" class="hljs-ln-code"><a href="#cb6-37"></a>    <span class="fu">logpdf</span>.(<span class="fu">MultPoisson</span>.(μ), [y[t] <span class="op">.*</span> <span class="fl">2</span>])</span>
-<span id="cb6-38" class="hljs-ln-code"><a href="#cb6-38"></a><span class="kw">end</span></span>
-<span id="cb6-39" class="hljs-ln-code"><a href="#cb6-39"></a></span>
-<span id="cb6-40" class="hljs-ln-code"><a href="#cb6-40"></a><span class="co"># priors/initial proposals</span></span>
-<span id="cb6-41" class="hljs-ln-code"><a href="#cb6-41"></a>βprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.025</span>), <span class="op">:</span>β)</span>
-<span id="cb6-42" class="hljs-ln-code"><a href="#cb6-42"></a>σprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.025</span>), <span class="op">:</span>σ)</span>
-<span id="cb6-43" class="hljs-ln-code"><a href="#cb6-43"></a>γprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.0125</span>), <span class="op">:</span>γ)</span>
-<span id="cb6-44" class="hljs-ln-code"><a href="#cb6-44"></a>proposals <span class="op">=</span> [βprop, σprop, γprop]</span>
-<span id="cb6-45" class="hljs-ln-code"><a href="#cb6-45"></a></span>
-<span id="cb6-46" class="hljs-ln-code"><a href="#cb6-46"></a><span class="co"># known parameters</span></span>
-<span id="cb6-47" class="hljs-ln-code"><a href="#cb6-47"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>)</span>
-<span id="cb6-48" class="hljs-ln-code"><a href="#cb6-48"></a></span>
-<span id="cb6-49" class="hljs-ln-code"><a href="#cb6-49"></a><span class="co">## run hybrid particle filter</span></span>
-<span id="cb6-50" class="hljs-ln-code"><a href="#cb6-50"></a>out <span class="op">=</span> <span class="fu">pf_hybrid2</span>(yobs, N, M, θ, g, compartments, transitions, proposals; p<span class="op">=</span>p)</span>
-<span id="cb6-51" class="hljs-ln-code"><a href="#cb6-51"></a>Iest <span class="op">=</span> <span class="fu">getstate</span>(out[<span class="fl">1</span>], <span class="op">:</span>I, <span class="fl">1</span>, out[<span class="fl">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-17" class="hljs-ln-code"><a href="#cb6-17"></a>N <span class="op">=</span> <span class="fl">50</span></span>
+<span id="cb6-18" class="hljs-ln-code"><a href="#cb6-18"></a>M <span class="op">=</span> <span class="fl">50</span></span>
+<span id="cb6-19" class="hljs-ln-code"><a href="#cb6-19"></a>p <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb6-20" class="hljs-ln-code"><a href="#cb6-20"></a><span class="co">## run hybrid particle filter</span></span>
+<span id="cb6-21" class="hljs-ln-code"><a href="#cb6-21"></a>out <span class="op">=</span> <span class="fu">pf_hybrid2</span>(yobs, N, M, θ, g, compartments, transitions, proposals; p<span class="op">=</span>p)</span>
+<span id="cb6-22" class="hljs-ln-code"><a href="#cb6-22"></a>Iest <span class="op">=</span> <span class="fu">getstate</span>(out[<span class="fl">1</span>], <span class="op">:</span>I, <span class="fl">1</span>, out[<span class="fl">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-demonstration-6" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb7-1" class="hljs-ln-code"><a href="#cb7-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
-<span id="cb7-2" class="hljs-ln-code"><a href="#cb7-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb7-3" class="hljs-ln-code"><a href="#cb7-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb7-4" class="hljs-ln-code"><a href="#cb7-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb7-5" class="hljs-ln-code"><a href="#cb7-5"></a>p <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb7-6" class="hljs-ln-code"><a href="#cb7-6"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
-<span id="cb7-7" class="hljs-ln-code"><a href="#cb7-7"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
-<span id="cb7-8" class="hljs-ln-code"><a href="#cb7-8"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
-<span id="cb7-9" class="hljs-ln-code"><a href="#cb7-9"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
-<span id="cb7-10" class="hljs-ln-code"><a href="#cb7-10"></a><span class="co"># make transition functions from ODE</span></span>
-<span id="cb7-11" class="hljs-ln-code"><a href="#cb7-11"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
-<span id="cb7-12" class="hljs-ln-code"><a href="#cb7-12"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
-<span id="cb7-13" class="hljs-ln-code"><a href="#cb7-13"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
-<span id="cb7-14" class="hljs-ln-code"><a href="#cb7-14"></a>transitions <span class="op">=</span> [SE, EI, IR]</span>
-<span id="cb7-15" class="hljs-ln-code"><a href="#cb7-15"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>, σ<span class="op">=</span><span class="fl">0.2</span>, γ<span class="op">=</span><span class="fl">0.1</span>, β<span class="op">=</span><span class="fl">0.2</span>)</span>
+<section id="code-demonstration-particle-filter-2" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Code Demonstration: Particle Filter</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb7-1" class="hljs-ln-code"><a href="#cb7-1"></a><span class="co"># add components for particle filter</span></span>
+<span id="cb7-2" class="hljs-ln-code"><a href="#cb7-2"></a><span class="co">## measurement function</span></span>
+<span id="cb7-3" class="hljs-ln-code"><a href="#cb7-3"></a><span class="kw">function</span> <span class="fu">g</span>(y, particles, changes, data, n, θ, θt, t, Nloc)</span>
+<span id="cb7-4" class="hljs-ln-code"><a href="#cb7-4"></a>    μ <span class="op">=</span> particles[<span class="op">:</span>I][n, <span class="op">:</span>, t]</span>
+<span id="cb7-5" class="hljs-ln-code"><a href="#cb7-5"></a>    <span class="fu">logpdf</span>.(<span class="fu">MultPoisson</span>.(μ), [y[t] <span class="op">.*</span> <span class="fl">2</span>])</span>
+<span id="cb7-6" class="hljs-ln-code"><a href="#cb7-6"></a><span class="kw">end</span></span>
+<span id="cb7-7" class="hljs-ln-code"><a href="#cb7-7"></a></span>
+<span id="cb7-8" class="hljs-ln-code"><a href="#cb7-8"></a><span class="co"># priors/initial proposals</span></span>
+<span id="cb7-9" class="hljs-ln-code"><a href="#cb7-9"></a>βprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>β)</span>
+<span id="cb7-10" class="hljs-ln-code"><a href="#cb7-10"></a>σprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>σ)</span>
+<span id="cb7-11" class="hljs-ln-code"><a href="#cb7-11"></a>γprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">4</span>, <span class="fl">0.05</span>), <span class="op">:</span>γ)</span>
+<span id="cb7-12" class="hljs-ln-code"><a href="#cb7-12"></a>proposals <span class="op">=</span> [βprop, σprop, γprop]</span>
+<span id="cb7-13" class="hljs-ln-code"><a href="#cb7-13"></a></span>
+<span id="cb7-14" class="hljs-ln-code"><a href="#cb7-14"></a><span class="co"># known parameters</span></span>
+<span id="cb7-15" class="hljs-ln-code"><a href="#cb7-15"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>)</span>
 <span id="cb7-16" class="hljs-ln-code"><a href="#cb7-16"></a></span>
-<span id="cb7-17" class="hljs-ln-code"><a href="#cb7-17"></a><span class="co"># set initial compartment values</span></span>
-<span id="cb7-18" class="hljs-ln-code"><a href="#cb7-18"></a>compartments <span class="op">=</span> (S<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">.+</span> <span class="fl">59990</span>,</span>
-<span id="cb7-19" class="hljs-ln-code"><a href="#cb7-19"></a>    E<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb7-20" class="hljs-ln-code"><a href="#cb7-20"></a>    I<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb7-21" class="hljs-ln-code"><a href="#cb7-21"></a>    R<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc))</span>
-<span id="cb7-22" class="hljs-ln-code"><a href="#cb7-22"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb7-23" class="hljs-ln-code"><a href="#cb7-23"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span>
-<span id="cb7-24" class="hljs-ln-code"><a href="#cb7-24"></a></span>
-<span id="cb7-25" class="hljs-ln-code"><a href="#cb7-25"></a><span class="co"># simulate and epidemic</span></span>
-<span id="cb7-26" class="hljs-ln-code"><a href="#cb7-26"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">3453</span>)</span>
-<span id="cb7-27" class="hljs-ln-code"><a href="#cb7-27"></a>simEp, simPar <span class="op">=</span> <span class="fu">simEpidemic</span>(Nt, θ, compartments, transitions, nLoc);</span>
-<span id="cb7-28" class="hljs-ln-code"><a href="#cb7-28"></a></span>
-<span id="cb7-29" class="hljs-ln-code"><a href="#cb7-29"></a><span class="co"># prepare "under-reported" cases</span></span>
-<span id="cb7-30" class="hljs-ln-code"><a href="#cb7-30"></a>ysim <span class="op">=</span> [simEp[<span class="op">:</span>I][<span class="op">:</span>, t] for t <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">365</span>]</span>
-<span id="cb7-31" class="hljs-ln-code"><a href="#cb7-31"></a>yobs <span class="op">=</span> <span class="fu">rand</span>.(<span class="fu">MultPoisson</span>.(ysim <span class="op">*</span> <span class="fl">0.5</span>));</span>
-<span id="cb7-32" class="hljs-ln-code"><a href="#cb7-32"></a></span>
-<span id="cb7-33" class="hljs-ln-code"><a href="#cb7-33"></a><span class="co"># add components for particle filter</span></span>
-<span id="cb7-34" class="hljs-ln-code"><a href="#cb7-34"></a><span class="co">## measurement function</span></span>
-<span id="cb7-35" class="hljs-ln-code"><a href="#cb7-35"></a><span class="kw">function</span> <span class="fu">g</span>(y, particles, changes, data, n, θ, θt, t, Nloc)</span>
-<span id="cb7-36" class="hljs-ln-code"><a href="#cb7-36"></a>    μ <span class="op">=</span> particles[<span class="op">:</span>I][n, <span class="op">:</span>, t]</span>
-<span id="cb7-37" class="hljs-ln-code"><a href="#cb7-37"></a>    <span class="fu">logpdf</span>.(<span class="fu">MultPoisson</span>.(μ), [y[t] <span class="op">.*</span> <span class="fl">2</span>])</span>
-<span id="cb7-38" class="hljs-ln-code"><a href="#cb7-38"></a><span class="kw">end</span></span>
-<span id="cb7-39" class="hljs-ln-code"><a href="#cb7-39"></a></span>
-<span id="cb7-40" class="hljs-ln-code"><a href="#cb7-40"></a><span class="co"># priors/initial proposals</span></span>
-<span id="cb7-41" class="hljs-ln-code"><a href="#cb7-41"></a>βprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.025</span>), <span class="op">:</span>β)</span>
-<span id="cb7-42" class="hljs-ln-code"><a href="#cb7-42"></a>σprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.025</span>), <span class="op">:</span>σ)</span>
-<span id="cb7-43" class="hljs-ln-code"><a href="#cb7-43"></a>γprop <span class="op">=</span> <span class="fu">makeProposal</span>(<span class="fu">Gamma</span>(<span class="fl">8</span>, <span class="fl">0.0125</span>), <span class="op">:</span>γ)</span>
-<span id="cb7-44" class="hljs-ln-code"><a href="#cb7-44"></a>proposals <span class="op">=</span> [βprop, σprop, γprop]</span>
-<span id="cb7-45" class="hljs-ln-code"><a href="#cb7-45"></a></span>
-<span id="cb7-46" class="hljs-ln-code"><a href="#cb7-46"></a><span class="co"># known parameters</span></span>
-<span id="cb7-47" class="hljs-ln-code"><a href="#cb7-47"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>)</span>
-<span id="cb7-48" class="hljs-ln-code"><a href="#cb7-48"></a></span>
-<span id="cb7-49" class="hljs-ln-code"><a href="#cb7-49"></a><span class="co">## run hybrid particle filter</span></span>
-<span id="cb7-50" class="hljs-ln-code"><a href="#cb7-50"></a>out <span class="op">=</span> <span class="fu">pf_hybrid2</span>(yobs, N, M, θ, g, compartments, transitions, proposals; p<span class="op">=</span>p)</span>
-<span id="cb7-51" class="hljs-ln-code"><a href="#cb7-51"></a>Iest <span class="op">=</span> <span class="fu">getstate</span>(out[<span class="fl">1</span>], <span class="op">:</span>I, <span class="fl">1</span>, out[<span class="fl">4</span>])</span>
-<span id="cb7-52" class="hljs-ln-code"><a href="#cb7-52"></a></span>
-<span id="cb7-53" class="hljs-ln-code"><a href="#cb7-53"></a><span class="co"># plot results </span></span>
-<span id="cb7-54" class="hljs-ln-code"><a href="#cb7-54"></a><span class="fu">plot</span>([simEp[<span class="op">:</span>I][<span class="fl">1</span>, <span class="op">:</span>], Iest, <span class="fu">first</span>.(yobs)], color<span class="op">=</span>[<span class="op">:</span>red <span class="op">:</span>dodgerblue2 <span class="op">:</span>green], label<span class="op">=</span>[<span class="st">"Truth"</span> <span class="st">"Estimate"</span> <span class="st">"Observed"</span>], legend<span class="op">=:</span>outertopright)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-17" class="hljs-ln-code"><a href="#cb7-17"></a>N <span class="op">=</span> <span class="fl">50</span></span>
+<span id="cb7-18" class="hljs-ln-code"><a href="#cb7-18"></a>M <span class="op">=</span> <span class="fl">50</span></span>
+<span id="cb7-19" class="hljs-ln-code"><a href="#cb7-19"></a>p <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb7-20" class="hljs-ln-code"><a href="#cb7-20"></a><span class="co">## run hybrid particle filter</span></span>
+<span id="cb7-21" class="hljs-ln-code"><a href="#cb7-21"></a>out <span class="op">=</span> <span class="fu">pf_hybrid2</span>(yobs, N, M, θ, g, compartments, transitions, proposals; p<span class="op">=</span>p)</span>
+<span id="cb7-22" class="hljs-ln-code"><a href="#cb7-22"></a>Iest <span class="op">=</span> <span class="fu">getstate</span>(out[<span class="fl">1</span>], <span class="op">:</span>I, <span class="fl">1</span>, out[<span class="fl">4</span>])</span>
+<span id="cb7-23" class="hljs-ln-code"><a href="#cb7-23"></a></span>
+<span id="cb7-24" class="hljs-ln-code"><a href="#cb7-24"></a><span class="co"># plot results </span></span>
+<span id="cb7-25" class="hljs-ln-code"><a href="#cb7-25"></a><span class="fu">plot</span>([simEp[<span class="op">:</span>I][<span class="fl">1</span>, <span class="op">:</span>], Iest, <span class="fu">first</span>.(yobs)], color<span class="op">=</span>[<span class="op">:</span>red <span class="op">:</span>dodgerblue2 <span class="op">:</span>green], label<span class="op">=</span>[<span class="st">"Truth"</span> <span class="st">"Estimate"</span> <span class="st">"Observed"</span>], legend<span class="op">=:</span>outertopright)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="code-demonstration-7" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" width="650" height="400">
+<section id="code-demonstration-particle-filter-3" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Code Demonstration: Particle Filter</h2>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" height="400" width="650">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="demo_I.png" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="650" height="400">
@@ -1928,7 +1835,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute quarto-figure quarto-figure-center" data-bottom="0" height="420" width="420" data-right="40" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute quarto-figure quarto-figure-center" height="420" data-bottom="0" data-right="40" width="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
@@ -1939,7 +1846,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions?</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="quarto-figure quarto-figure-center" width="530" height="550">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="quarto-figure quarto-figure-center" height="550" width="530">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="questions.jpeg" id="fig-539a35d47e664c97a50115a146a7f1bd-9" width="530" height="550">
