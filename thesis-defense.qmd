@@ -691,7 +691,7 @@ We consider a 103 week cholera outbreak in Haiti from 2010 through 2012.
 
 . . .
 
-- We aim to capture the bacterial spread though Haiti's waterways with political boarders and rainfall data.
+- We aim to capture the bacterial spread though Haiti's waterways with political borders and rainfall data.
 
     - We do not have data on the size and location of actual waterways or sewage systems. 
 
@@ -747,7 +747,7 @@ $$\frac{d B_{(l)}}{d t} = - (\mu_B \times B_{(l)}(t)) + (\frac{1}{h_{(l)}} \time
 
 The estimated concentration of *V. cholerae* in the environment decreases over the course of the epidemic in all 10 departments. 
 
-- Consistent with the empirical showing a decline in reported cases overtime.
+- Consistent with the empirical data showing a decline in reported cases overtime.
 
 - Near the end of the surveillance period when reported cases were low, the estimated concentration of *V. cholerae* is similar in all ten of Haiti’s departments. 
 
@@ -768,7 +768,7 @@ We developed a software package in Julia to implement the Hybrid Particle Filter
 
 - Written entirely in Julia.
 
-- Highly customizeable.
+    - Highly customizeable.
 
 - Handles simulation and estimation. 
 
