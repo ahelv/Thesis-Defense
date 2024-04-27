@@ -16,6 +16,8 @@ format:
         mermaid: 
             theme: default
         output-file: "index"
+        chalkboard: 
+            theme: whiteboard
 ---
 
 ## Scope of thesis

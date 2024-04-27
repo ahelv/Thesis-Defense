@@ -101,6 +101,8 @@
   <link href="thesis-defense_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="thesis-defense_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="thesis-defense_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="thesis-defense_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="thesis-defense_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="thesis-defense_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -1835,7 +1837,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute quarto-figure quarto-figure-center" height="420" data-bottom="0" data-right="40" width="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute quarto-figure quarto-figure-center" height="420" data-right="40" data-bottom="0" width="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
@@ -1915,6 +1917,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
   <script src="thesis-defense_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="thesis-defense_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="thesis-defense_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="thesis-defense_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="thesis-defense_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1935,7 +1938,8 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"theme":"whiteboard"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -2106,7 +2110,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
