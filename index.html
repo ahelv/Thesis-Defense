@@ -417,12 +417,15 @@ Annika Helverson
 </section>
 <section id="scope-of-thesis" class="slide level2">
 <h2>Scope of thesis</h2>
-<p>This thesis consists of three components:</p>
+<p>Conducting estimation of intricate systems like epidemics is both important to public health and a computational challenge.</p>
+<div class="fragment">
+<p>This thesis consists of three components that address this challenge:</p>
 <ol type="1">
 <li><p>A computationally efficient algorithm for state space estimation</p></li>
 <li><p>A software package in Julia for convenient implementation of our algorithm</p></li>
 <li><p>A real data application to a cholera outbreak in Haiti</p></li>
 </ol>
+</div>
 </section>
 <section id="outline" class="slide level2">
 <h2>Outline</h2>
@@ -841,7 +844,7 @@ class A,B,C,D iowa
 </ul></li>
 </ul>
 <div class="fragment">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute quarto-figure quarto-figure-center" data-right="50" width="500" data-top="250" height="400" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute quarto-figure quarto-figure-center" width="500" data-top="250" data-right="50" height="400" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="priors.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
@@ -864,7 +867,7 @@ class A,B,C,D iowa
 <div id="fig-nested-I" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-I-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/Iest_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-I">
+<img data-src="nested/Iest_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-I">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-I-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -878,7 +881,7 @@ class A,B,C,D iowa
 <div id="fig-hybrid-I" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-I-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/Iest_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-I">
+<img data-src="hybrid/Iest_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-I">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-I-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -903,7 +906,7 @@ Figure&nbsp;1: Estimated infectious counts (I) using the Nested and Hybrid Parti
 <div id="fig-nested-beta" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-beta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/betaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-beta">
+<img data-src="nested/betaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-beta">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-beta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -917,7 +920,7 @@ Figure&nbsp;1: Estimated infectious counts (I) using the Nested and Hybrid Parti
 <div id="fig-hybrid-beta" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-beta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/betaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-beta">
+<img data-src="hybrid/betaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-beta">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-beta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -942,7 +945,7 @@ Figure&nbsp;2: Estimated transmission rate (β) using the Nested and Hybrid Part
 <div id="fig-nested-sigma" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/sigmaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-sigma">
+<img data-src="nested/sigmaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-sigma">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -956,7 +959,7 @@ Figure&nbsp;2: Estimated transmission rate (β) using the Nested and Hybrid Part
 <div id="fig-hybrid-sigma" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/sigmaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-sigma">
+<img data-src="hybrid/sigmaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-sigma">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-sigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -981,7 +984,7 @@ Figure&nbsp;3: Estimated incubation rate (<span class="math inline">\(\sigma\)</
 <div id="fig-nested-gamma" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-gamma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/gammaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-gamma">
+<img data-src="nested/gammaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-gamma">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-gamma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -995,7 +998,7 @@ Figure&nbsp;3: Estimated incubation rate (<span class="math inline">\(\sigma\)</
 <div id="fig-hybrid-gamma" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-gamma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/gammaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-gamma">
+<img data-src="hybrid/gammaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-gamma">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-gamma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1028,7 +1031,7 @@ Figure&nbsp;4: Estimated recovery rate (<span class="math inline">\(\gamma\)</sp
 <div id="fig-nested-I-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-I-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/Unif_Iest_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-I-unif">
+<img data-src="nested/Unif_Iest_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-I-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-I-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1042,7 +1045,7 @@ Figure&nbsp;4: Estimated recovery rate (<span class="math inline">\(\gamma\)</sp
 <div id="fig-hybrid-I-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-I-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/Unif_Iest_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-I-unif">
+<img data-src="hybrid/Unif_Iest_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-I-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-I-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1067,7 +1070,7 @@ Figure&nbsp;5: Estimated infectious counts (I) using the Nested and Hybrid Parti
 <div id="fig-nested-beta-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-beta-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/Unif_betaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-beta-unif">
+<img data-src="nested/Unif_betaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-beta-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-beta-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1081,7 +1084,7 @@ Figure&nbsp;5: Estimated infectious counts (I) using the Nested and Hybrid Parti
 <div id="fig-hybrid-beta-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-beta-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/Unif_betaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-beta-unif">
+<img data-src="hybrid/Unif_betaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-beta-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-beta-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1106,7 +1109,7 @@ Figure&nbsp;6: Estimated transmission rate (β) using the Nested and Hybrid Part
 <div id="fig-nested-sigma-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-sigma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/Unif_sigmaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-sigma-unif">
+<img data-src="nested/Unif_sigmaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-sigma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-sigma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1120,7 +1123,7 @@ Figure&nbsp;6: Estimated transmission rate (β) using the Nested and Hybrid Part
 <div id="fig-hybrid-sigma-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-sigma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/Unif_sigmaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-sigma-unif">
+<img data-src="hybrid/Unif_sigmaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-sigma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-sigma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1145,7 +1148,7 @@ Figure&nbsp;7: Estimated incubation rate (<span class="math inline">\(\sigma\)</
 <div id="fig-nested-gamma-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-gamma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/Unif_gammaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-gamma-unif">
+<img data-src="nested/Unif_gammaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-gamma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-gamma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1159,7 +1162,7 @@ Figure&nbsp;7: Estimated incubation rate (<span class="math inline">\(\sigma\)</
 <div id="fig-hybrid-gamma-unif" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-gamma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/Unif_gammaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-gamma-unif">
+<img data-src="hybrid/Unif_gammaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-gamma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-gamma-unif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1192,7 +1195,7 @@ Figure&nbsp;8: Estimated recovery rate (<span class="math inline">\(\gamma\)</sp
 <div id="fig-nested-I-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-I-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/gam8_Iest_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-I-weak">
+<img data-src="nested/gam8_Iest_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-I-weak">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-I-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1206,7 +1209,7 @@ Figure&nbsp;8: Estimated recovery rate (<span class="math inline">\(\gamma\)</sp
 <div id="fig-hybrid-I-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-I-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/gam8_Iest_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-I-weak">
+<img data-src="hybrid/gam8_Iest_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-I-weak">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-I-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1231,7 +1234,7 @@ Figure&nbsp;9: Estimated infectious counts (I) using the Nested and Hybrid Parti
 <div id="fig-nested-beta-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-beta-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/gam8_betaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-beta-unif">
+<img data-src="nested/gam8_betaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-beta-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-beta-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1245,7 +1248,7 @@ Figure&nbsp;9: Estimated infectious counts (I) using the Nested and Hybrid Parti
 <div id="fig-hybrid-beta-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-beta-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/gam8_betaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-beta-unif">
+<img data-src="hybrid/gam8_betaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-beta-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-beta-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1270,7 +1273,7 @@ Figure&nbsp;10: Estimated transmission rate (β) using the Nested and Hybrid Par
 <div id="fig-nested-sigma-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-sigma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/gam8_sigmaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-sigma-unif">
+<img data-src="nested/gam8_sigmaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-sigma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-sigma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1284,7 +1287,7 @@ Figure&nbsp;10: Estimated transmission rate (β) using the Nested and Hybrid Par
 <div id="fig-hybrid-sigma-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-sigma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/gam8_sigmaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-sigma-unif">
+<img data-src="hybrid/gam8_sigmaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-sigma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-sigma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1309,7 +1312,7 @@ Figure&nbsp;11: Estimated incubation rate (<span class="math inline">\(\sigma\)<
 <div id="fig-nested-gamma-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-nested-gamma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="nested/gam8_gammaEst_n1l.png" style="width:50.0%" data-ref-parent="fig-1loc-gamma-unif">
+<img data-src="nested/gam8_gammaEst_n1l.png" style="width:55.0%" data-ref-parent="fig-1loc-gamma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-nested-gamma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Nested Particle Filter
@@ -1323,7 +1326,7 @@ Figure&nbsp;11: Estimated incubation rate (<span class="math inline">\(\sigma\)<
 <div id="fig-hybrid-gamma-gam" class="quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-subfloat-fig">
 <div aria-describedby="fig-hybrid-gamma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="hybrid/gam8_gammaEst_h1l.png" style="width:50.0%" data-ref-parent="fig-1loc-gamma-unif">
+<img data-src="hybrid/gam8_gammaEst_h1l.png" style="width:55.0%" data-ref-parent="fig-1loc-gamma-unif">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-hybrid-gamma-gam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hybrid Particle Filter
@@ -1344,10 +1347,10 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="simulation-summary" class="slide level2">
 <h2>Simulation Summary</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" width="600" height="850">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" width="600" height="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="MSE_1loc.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="600" height="850">
+<img data-src="MSE_1loc.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="600" height="700">
 </div>
 </figure>
 </div>
@@ -1516,7 +1519,10 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <h2>Application: Cholera Outbreak</h2>
 <p>We consider a 103 week cholera outbreak in Haiti from 2010 through 2012.</p>
 <ul>
-<li><p>Cholera is an acute infection caused by the bacterium <em>Vibrio cholerae</em> (<em>V. cholerae</em>) which can result in severe diarrhea.</p></li>
+<li><p>Cholera is an acute infection caused by the bacterium <em>Vibrio cholerae</em> (<em>V. cholerae</em>) which can result in severe diarrhea.</p>
+<ul>
+<li>The Haitian government reports about 10,000 cholera deaths during this time.</li>
+</ul></li>
 <li><p><em>V. cholerae</em> is usually ingested via contaminated food or water and introduced back into the environment through contaminated fecal matter.</p>
 <ul>
 <li>Known for surviving for long periods of time in fresh, salty, and brackish water.</li>
@@ -1884,7 +1890,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute quarto-figure quarto-figure-center" data-right="40" data-bottom="0" width="420" height="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute quarto-figure quarto-figure-center" width="420" data-right="40" data-bottom="0" height="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
