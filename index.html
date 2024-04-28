@@ -575,7 +575,7 @@ class A,B,C,D iowa
 <section id="sequential-importance-sampling-sis" class="slide level2">
 <h2>Sequential Importance Sampling (SIS)</h2>
 <p>The basis of all particle filtering schemes is SIS:</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="700" height="350">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" height="350" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="SIS.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="700" height="350">
@@ -585,7 +585,7 @@ class A,B,C,D iowa
 </section>
 <section id="toy-demonstration" class="slide level2">
 <h2>Toy Demonstration</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="700" height="500">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" height="500" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="particle_filter.gif" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="700" height="500">
@@ -666,7 +666,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-1-2">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="750" height="700">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" height="700" width="750">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="nested-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="750" height="700">
@@ -754,7 +754,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-2-3">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="790" height="890">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" height="890" width="790">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="hybrid-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="790" height="890">
@@ -814,9 +814,9 @@ class A,B,C,D iowa
 <ul>
 <li><p>Number of particles</p>
 <ul>
-<li><p><span class="math inline">\(N = M = 10\)</span></p></li>
-<li><p><span class="math inline">\(N = M = 30\)</span></p></li>
-<li><p><span class="math inline">\(N = M = 50\)</span></p></li>
+<li><p><span class="math inline">\(N = M = 10\)</span> (<span class="math inline">\(N \times M = 100\)</span>)</p></li>
+<li><p><span class="math inline">\(N = M = 30\)</span> (<span class="math inline">\(N \times M = 900\)</span>)</p></li>
+<li><p><span class="math inline">\(N = M = 50\)</span> (<span class="math inline">\(N \times M = 2500\)</span>)</p></li>
 </ul></li>
 <li><p>Priors/Initial Proposals</p>
 <ul>
@@ -838,7 +838,15 @@ class A,B,C,D iowa
 <li><p><span class="math inline">\(\pi(\sigma) \sim Uniform(0, 0.5)\)</span></p></li>
 <li><p><span class="math inline">\(\pi(\gamma) \sim Uniform(0, 0.5)\)</span></p></li>
 </ul></li>
-</ul></li>
+</ul>
+<p>. . .</p>
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute quarto-figure quarto-figure-center" data-top="250" width="500" height="400" data-right="50" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
+<figure class="quarto-float quarto-float-fig">
+<div>
+<img data-src="priors.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
+</div>
+</figure>
+</div></li>
 </ul>
 </section>
 <section id="results-strongly-informative" class="slide level2">
@@ -1335,10 +1343,10 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="simulation-summary" class="slide level2">
 <h2>Simulation Summary</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="quarto-figure quarto-figure-center" width="600" height="850">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" height="850" width="600">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="MSE_1loc.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" width="600" height="850">
+<img data-src="MSE_1loc.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="600" height="850">
 </div>
 </figure>
 </div>
@@ -1530,10 +1538,10 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <section id="spatial-locations" class="slide level2">
 <h2>Spatial Locations</h2>
 <p>Haiti is divided into 10 departments:</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" width="700" height="500">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" height="500" width="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="haiti_map.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="700" height="500">
+<img data-src="haiti_map.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="700" height="500">
 </div>
 </figure>
 </div>
@@ -1804,10 +1812,10 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 </section>
 <section id="code-demonstration-particle-filter-3" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Code Demonstration: Particle Filter</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" width="650" height="400">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="quarto-figure quarto-figure-center" height="400" width="650">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="demo_I.png" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="650" height="400">
+<img data-src="demo_I.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" width="650" height="400">
 </div>
 </figure>
 </div>
@@ -1820,13 +1828,49 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <li><p>Does not perform well with flat priors.</p></li>
 <li><p>Fast relative to MCMC but generally slower than the Nested Particle Filter.</p></li>
 </ul></li>
-<li><p>Alternative resampling schemes should be explored.</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Alternative resampling schemes should be explored.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><p>Potential for two-stage estimation approaches</p>
 <ul>
 <li><p>Results from the Hybrid algorithm could be used as a “hot start” for MCMC</p></li>
 <li><p>Results from the Nested Particle Filter can be used to construct weakly informative priors for the Hybrid Particle Filter.</p></li>
 </ul></li>
 </ul>
+</div>
+</section>
+<section id="contributions" class="slide level2">
+<h2>Contributions</h2>
+<ol type="1">
+<li>We have introduced a novel particle filtering algorithm: the Hybrid Particle Filter.</li>
+</ol>
+<ul>
+<li>Enables efficient simultaneous estimation of latent states and unknown parameters.</li>
+</ul>
+<div class="fragment">
+<ol start="2" type="1">
+<li>We have developed a software package in Julia.</li>
+</ol>
+<ul>
+<li>Offers a convenient, accessible, and customizeable way for researchers to use our algorithm under any compartmental model structure.</li>
+</ul>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>We constructed a fully stochastic, spatially explicit model for a cholera outbreak in Haiti</li>
+</ol>
+<ul>
+<li>Other researchers have been limited to two stage, partially stocahstic models.</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Our novel algorithm and accompanying custom software package have the potential to make complex state space modeling more accessbile and more efficient.</p>
+</div>
 </section>
 <section id="acknowledgements" class="slide level2">
 <h2>Acknowledgements</h2>
@@ -1839,10 +1883,10 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute quarto-figure quarto-figure-center" data-right="40" height="420" width="420" data-bottom="0" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute quarto-figure quarto-figure-center" height="420" width="420" data-bottom="0" data-right="40" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 </div>
 </figure>
 </div>
@@ -1850,10 +1894,10 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions?</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="quarto-figure quarto-figure-center" width="530" height="550">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="quarto-figure quarto-figure-center" height="550" width="530">
 <figure class="quarto-float quarto-float-fig">
 <div>
-<img data-src="questions.jpeg" id="fig-539a35d47e664c97a50115a146a7f1bd-9" width="530" height="550">
+<img data-src="questions.jpeg" id="fig-539a35d47e664c97a50115a146a7f1bd-10" width="530" height="550">
 </div>
 </figure>
 </div>

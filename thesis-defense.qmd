@@ -407,11 +407,11 @@ For both Hybrid and Nested Particle Filters, we vary the number of particles and
 
 - Number of particles
 
-    - $N = M = 10$
+    - $N = M = 10$ ($N \times M = 100$)
 
-    - $N = M = 30$
+    - $N = M = 30$ ($N \times M = 900$)
 
-    - $N = M = 50$
+    - $N = M = 50$ ($N \times M = 2500$)
 
 - Priors/Initial Proposals 
 
@@ -439,6 +439,10 @@ For both Hybrid and Nested Particle Filters, we vary the number of particles and
         - $\pi(\sigma) \sim Uniform(0, 0.5)$
         
         - $\pi(\gamma) \sim Uniform(0, 0.5)$
+
+    . . .
+
+    ![](priors.png){.absolute top=250 right=50 width="500" height="400"}
 
 ## Results: Strongly Informative
 
@@ -962,13 +966,39 @@ plot([simEp[:I][1, :], Iest, first.(yobs)], color=[:red :dodgerblue2 :green], la
 
     - Fast relative to MCMC but generally slower than the Nested Particle Filter.
 
+. . .
+
 - Alternative resampling schemes should be explored.
+
+. . .
 
 - Potential for two-stage estimation approaches
 
     - Results from the Hybrid algorithm could be used as a "hot start" for MCMC
 
     - Results from the Nested Particle Filter can be used to construct weakly informative priors for the Hybrid Particle Filter. 
+
+## Contributions
+
+1. We have introduced a novel particle filtering algorithm: the Hybrid Particle Filter.
+
+- Enables efficient simultaneous estimation of latent states and unknown parameters.
+
+. . .
+
+2. We have developed a software package in Julia.
+
+- Offers a convenient, accessible, and customizeable way for researchers to use our algorithm under any compartmental model structure.
+
+. . . 
+
+3. We constructed a fully stochastic, spatially explicit model for a cholera outbreak in Haiti
+
+- Other researchers have been limited to two stage, partially stocahstic models.
+
+. . .
+
+Our novel algorithm and accompanying custom software package have the potential to make complex state space modeling more accessbile and more efficient. 
 
 ## Acknowledgements 
 
