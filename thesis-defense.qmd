@@ -440,9 +440,9 @@ For both Hybrid and Nested Particle Filters, we vary the number of particles and
         
         - $\pi(\gamma) \sim Uniform(0, 0.5)$
 
-    . . .
+. . .
 
-    ![](priors.png){.absolute top=250 right=50 width="500" height="400"}
+![](priors.png){.absolute top=250 right=50 width="500" height="400"}
 
 ## Results: Strongly Informative
 

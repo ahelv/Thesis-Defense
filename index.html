@@ -575,7 +575,7 @@ class A,B,C,D iowa
 <section id="sequential-importance-sampling-sis" class="slide level2">
 <h2>Sequential Importance Sampling (SIS)</h2>
 <p>The basis of all particle filtering schemes is SIS:</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" height="350" width="700">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" width="700" height="350">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="SIS.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" width="700" height="350">
@@ -585,7 +585,7 @@ class A,B,C,D iowa
 </section>
 <section id="toy-demonstration" class="slide level2">
 <h2>Toy Demonstration</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" height="500" width="700">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-2" class="quarto-figure quarto-figure-center" width="700" height="500">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="particle_filter.gif" id="fig-539a35d47e664c97a50115a146a7f1bd-2" width="700" height="500">
@@ -666,7 +666,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-1-2">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" height="700" width="750">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="quarto-figure quarto-figure-center" width="750" height="700">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="nested-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" width="750" height="700">
@@ -754,7 +754,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div id="tabset-2-3">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" height="890" width="790">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-4" class="quarto-figure quarto-figure-center" width="790" height="890">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="hybrid-alg.png" id="fig-539a35d47e664c97a50115a146a7f1bd-4" width="790" height="890">
@@ -838,16 +838,17 @@ class A,B,C,D iowa
 <li><p><span class="math inline">\(\pi(\sigma) \sim Uniform(0, 0.5)\)</span></p></li>
 <li><p><span class="math inline">\(\pi(\gamma) \sim Uniform(0, 0.5)\)</span></p></li>
 </ul></li>
+</ul></li>
 </ul>
-<p>. . .</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute quarto-figure quarto-figure-center" data-top="250" width="500" height="400" data-right="50" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
+<div class="fragment">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute quarto-figure quarto-figure-center" data-right="50" width="500" data-top="250" height="400" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="priors.png" id="fig-539a35d47e664c97a50115a146a7f1bd-5" class="absolute" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
 </div>
 </figure>
-</div></li>
-</ul>
+</div>
+</div>
 </section>
 <section id="results-strongly-informative" class="slide level2">
 <h2>Results: Strongly Informative</h2>
@@ -1343,7 +1344,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="simulation-summary" class="slide level2">
 <h2>Simulation Summary</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" height="850" width="600">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="quarto-figure quarto-figure-center" width="600" height="850">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="MSE_1loc.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" width="600" height="850">
@@ -1538,7 +1539,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <section id="spatial-locations" class="slide level2">
 <h2>Spatial Locations</h2>
 <p>Haiti is divided into 10 departments:</p>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" height="500" width="700">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-7" class="quarto-figure quarto-figure-center" width="700" height="500">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="haiti_map.jpg" id="fig-539a35d47e664c97a50115a146a7f1bd-7" width="700" height="500">
@@ -1812,7 +1813,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 </section>
 <section id="code-demonstration-particle-filter-3" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Code Demonstration: Particle Filter</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="quarto-figure quarto-figure-center" height="400" width="650">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-8" class="quarto-figure quarto-figure-center" width="650" height="400">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="demo_I.png" id="fig-539a35d47e664c97a50115a146a7f1bd-8" width="650" height="400">
@@ -1883,7 +1884,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute quarto-figure quarto-figure-center" height="420" width="420" data-bottom="0" data-right="40" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute quarto-figure quarto-figure-center" data-right="40" data-bottom="0" width="420" height="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-9" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
@@ -1894,7 +1895,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions?</h2>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="quarto-figure quarto-figure-center" height="550" width="530">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="quarto-figure quarto-figure-center" width="530" height="550">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="questions.jpeg" id="fig-539a35d47e664c97a50115a146a7f1bd-10" width="530" height="550">
