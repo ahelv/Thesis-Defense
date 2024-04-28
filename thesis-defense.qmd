@@ -218,6 +218,10 @@ Particle filters are widely used and well documented, but have some notable shor
 
 . . .
 
+![](deg_imp.png){.absolute top=60 right=70 width="470" height="370"}
+
+. . .
+
 3. Assumes that parameters are both *static* and *known*
 
 . . .
