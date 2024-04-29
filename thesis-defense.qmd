@@ -22,10 +22,6 @@ format:
 
 ## Scope of thesis
 
-Conducting estimation of intricate systems like epidemics is both important to public health and a computational challenge. 
-
-. . .
-
 This thesis consists of three components that address this challenge:
 
 1. A computationally efficient algorithm for state space estimation
