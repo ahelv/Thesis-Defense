@@ -618,7 +618,7 @@ class A,B,C,D iowa
 </ul>
 </div>
 <div class="fragment">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="absolute quarto-figure quarto-figure-center" data-top="60" height="370" width="470" data-right="70" style="top: 60px; right: 70px; width: 470px; height: 370px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="absolute quarto-figure quarto-figure-center" data-right="70" height="370" width="470" data-top="60" style="top: 60px; right: 70px; width: 470px; height: 370px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="deg_imp.png" id="fig-539a35d47e664c97a50115a146a7f1bd-3" class="absolute" style="top: 60px; right: 70px; width: 470px; height: 370px; ">
@@ -853,7 +853,7 @@ class A,B,C,D iowa
 </ul></li>
 </ul>
 <div class="fragment">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute quarto-figure quarto-figure-center" data-top="250" height="400" width="500" data-right="50" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute quarto-figure quarto-figure-center" data-right="50" height="400" width="500" data-top="250" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="priors.png" id="fig-539a35d47e664c97a50115a146a7f1bd-6" class="absolute" style="top: 250px; right: 50px; width: 500px; height: 400px; ">
@@ -1530,7 +1530,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 <ul>
 <li><p>Cholera is an acute infection caused by the bacterium <em>Vibrio cholerae</em> (<em>V. cholerae</em>) which can result in severe diarrhea.</p>
 <ul>
-<li>The Haitian government reports about 10,000 cholera deaths during this time.</li>
+<li>During this time, the Haitian public health ministry reported 604,634 cases of infection, 329,697 hospitalizations, and 7436 deaths from cholera.</li>
 </ul></li>
 <li><p><em>V. cholerae</em> is usually ingested via contaminated food or water and introduced back into the environment through contaminated fecal matter.</p>
 <ul>
@@ -1564,7 +1564,7 @@ Figure&nbsp;12: Estimated recovery rate (<span class="math inline">\(\gamma\)</s
 </section>
 <section id="data" class="slide level2">
 <h2>Data</h2>
-<p>The observed data are weakly reported case counts in each of Haiti’s 10 departments.</p>
+<p>The observed data are weekly reported case counts in each of Haiti’s 10 departments.</p>
 <div id="fig-haiti-dat" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-haiti-dat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1673,58 +1673,49 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 </figure>
 </div>
 </section>
-<section id="code-demonstration" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Code Demonstration</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb1-1" class="hljs-ln-code"><a href="#cb1-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
-<span id="cb1-2" class="hljs-ln-code"><a href="#cb1-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb1-3" class="hljs-ln-code"><a href="#cb1-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb1-4" class="hljs-ln-code"><a href="#cb1-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb1-5" class="hljs-ln-code"><a href="#cb1-5"></a>p <span class="op">=</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="code-demonstration-simulating-data" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<section id="code-demonstration-simulating-data" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Code Demonstration: Simulating Data</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb2-1" class="hljs-ln-code"><a href="#cb2-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
-<span id="cb2-2" class="hljs-ln-code"><a href="#cb2-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb2-3" class="hljs-ln-code"><a href="#cb2-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb2-4" class="hljs-ln-code"><a href="#cb2-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb2-5" class="hljs-ln-code"><a href="#cb2-5"></a>p <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb2-6" class="hljs-ln-code"><a href="#cb2-6"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
-<span id="cb2-7" class="hljs-ln-code"><a href="#cb2-7"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
-<span id="cb2-8" class="hljs-ln-code"><a href="#cb2-8"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
-<span id="cb2-9" class="hljs-ln-code"><a href="#cb2-9"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
-<span id="cb2-10" class="hljs-ln-code"><a href="#cb2-10"></a><span class="co"># make transition functions from ODE</span></span>
-<span id="cb2-11" class="hljs-ln-code"><a href="#cb2-11"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
-<span id="cb2-12" class="hljs-ln-code"><a href="#cb2-12"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
-<span id="cb2-13" class="hljs-ln-code"><a href="#cb2-13"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
-<span id="cb2-14" class="hljs-ln-code"><a href="#cb2-14"></a>transitions <span class="op">=</span> [SE, EI, IR]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb1-1" class="hljs-ln-code"><a href="#cb1-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
+<span id="cb1-2" class="hljs-ln-code"><a href="#cb1-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="code-demonstration-simulating-data-1" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Code Demonstration: Simulating Data</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb3-1" class="hljs-ln-code"><a href="#cb3-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
-<span id="cb3-2" class="hljs-ln-code"><a href="#cb3-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb3-3" class="hljs-ln-code"><a href="#cb3-3"></a>N <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb3-4" class="hljs-ln-code"><a href="#cb3-4"></a>M <span class="op">=</span> <span class="fl">50</span></span>
-<span id="cb3-5" class="hljs-ln-code"><a href="#cb3-5"></a>p <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb3-6" class="hljs-ln-code"><a href="#cb3-6"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
-<span id="cb3-7" class="hljs-ln-code"><a href="#cb3-7"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
-<span id="cb3-8" class="hljs-ln-code"><a href="#cb3-8"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
-<span id="cb3-9" class="hljs-ln-code"><a href="#cb3-9"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
-<span id="cb3-10" class="hljs-ln-code"><a href="#cb3-10"></a><span class="co"># make transition functions from ODE</span></span>
-<span id="cb3-11" class="hljs-ln-code"><a href="#cb3-11"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
-<span id="cb3-12" class="hljs-ln-code"><a href="#cb3-12"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
-<span id="cb3-13" class="hljs-ln-code"><a href="#cb3-13"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
-<span id="cb3-14" class="hljs-ln-code"><a href="#cb3-14"></a>transitions <span class="op">=</span> [SE, EI, IR]</span>
-<span id="cb3-15" class="hljs-ln-code"><a href="#cb3-15"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>, σ<span class="op">=</span><span class="fl">0.2</span>, γ<span class="op">=</span><span class="fl">0.1</span>, β<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb3-16" class="hljs-ln-code"><a href="#cb3-16"></a></span>
-<span id="cb3-17" class="hljs-ln-code"><a href="#cb3-17"></a><span class="co"># set initial compartment values</span></span>
-<span id="cb3-18" class="hljs-ln-code"><a href="#cb3-18"></a>compartments <span class="op">=</span> (S<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">.+</span> <span class="fl">59990</span>,</span>
-<span id="cb3-19" class="hljs-ln-code"><a href="#cb3-19"></a>    E<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb3-20" class="hljs-ln-code"><a href="#cb3-20"></a>    I<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
-<span id="cb3-21" class="hljs-ln-code"><a href="#cb3-21"></a>    R<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc))</span>
-<span id="cb3-22" class="hljs-ln-code"><a href="#cb3-22"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb3-23" class="hljs-ln-code"><a href="#cb3-23"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb2-1" class="hljs-ln-code"><a href="#cb2-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
+<span id="cb2-2" class="hljs-ln-code"><a href="#cb2-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb2-3" class="hljs-ln-code"><a href="#cb2-3"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
+<span id="cb2-4" class="hljs-ln-code"><a href="#cb2-4"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
+<span id="cb2-5" class="hljs-ln-code"><a href="#cb2-5"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
+<span id="cb2-6" class="hljs-ln-code"><a href="#cb2-6"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
+<span id="cb2-7" class="hljs-ln-code"><a href="#cb2-7"></a><span class="co"># make transition functions from ODE</span></span>
+<span id="cb2-8" class="hljs-ln-code"><a href="#cb2-8"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
+<span id="cb2-9" class="hljs-ln-code"><a href="#cb2-9"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
+<span id="cb2-10" class="hljs-ln-code"><a href="#cb2-10"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
+<span id="cb2-11" class="hljs-ln-code"><a href="#cb2-11"></a>transitions <span class="op">=</span> [SE, EI, IR]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="code-demonstration-simulating-data-2" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
+<h2 data-id="quarto-animate-title">Code Demonstration: Simulating Data</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb3-1" class="hljs-ln-code"><a href="#cb3-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
+<span id="cb3-2" class="hljs-ln-code"><a href="#cb3-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb3-3" class="hljs-ln-code"><a href="#cb3-3"></a><span class="co"># ODE for SE, EI, IR transitions</span></span>
+<span id="cb3-4" class="hljs-ln-code"><a href="#cb3-4"></a><span class="fu">odeSE</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> (β <span class="op">.*</span> I <span class="op">./</span> Np)</span>
+<span id="cb3-5" class="hljs-ln-code"><a href="#cb3-5"></a><span class="fu">odeEI</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> σ</span>
+<span id="cb3-6" class="hljs-ln-code"><a href="#cb3-6"></a><span class="fu">odeIR</span>(; S, E, I, R, Np, σ, γ, β, Nloc) <span class="op">=</span> γ</span>
+<span id="cb3-7" class="hljs-ln-code"><a href="#cb3-7"></a><span class="co"># make transition functions from ODE</span></span>
+<span id="cb3-8" class="hljs-ln-code"><a href="#cb3-8"></a>SE <span class="op">=</span> <span class="fu">makeTrans</span>(odeSE, <span class="op">:</span>S, <span class="op">:</span>E)</span>
+<span id="cb3-9" class="hljs-ln-code"><a href="#cb3-9"></a>EI <span class="op">=</span> <span class="fu">makeTrans</span>(odeEI, <span class="op">:</span>E, <span class="op">:</span>I)</span>
+<span id="cb3-10" class="hljs-ln-code"><a href="#cb3-10"></a>IR <span class="op">=</span> <span class="fu">makeTrans</span>(odeIR, <span class="op">:</span>I, <span class="op">:</span>R)</span>
+<span id="cb3-11" class="hljs-ln-code"><a href="#cb3-11"></a>transitions <span class="op">=</span> [SE, EI, IR]</span>
+<span id="cb3-12" class="hljs-ln-code"><a href="#cb3-12"></a>θ <span class="op">=</span> (; Np<span class="op">=</span><span class="fl">60000</span>, σ<span class="op">=</span><span class="fl">0.2</span>, γ<span class="op">=</span><span class="fl">0.1</span>, β<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb3-13" class="hljs-ln-code"><a href="#cb3-13"></a></span>
+<span id="cb3-14" class="hljs-ln-code"><a href="#cb3-14"></a><span class="co"># set initial compartment values</span></span>
+<span id="cb3-15" class="hljs-ln-code"><a href="#cb3-15"></a>compartments <span class="op">=</span> (S<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">.+</span> <span class="fl">59990</span>,</span>
+<span id="cb3-16" class="hljs-ln-code"><a href="#cb3-16"></a>    E<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
+<span id="cb3-17" class="hljs-ln-code"><a href="#cb3-17"></a>    I<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc) <span class="op">+</span> <span class="fu">fill</span>(<span class="fl">0</span>, nLoc),</span>
+<span id="cb3-18" class="hljs-ln-code"><a href="#cb3-18"></a>    R<span class="op">=</span><span class="fu">zeros</span>(<span class="dt">Float16</span>, nLoc))</span>
+<span id="cb3-19" class="hljs-ln-code"><a href="#cb3-19"></a>compartments[<span class="op">:</span>E][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb3-20" class="hljs-ln-code"><a href="#cb3-20"></a>compartments[<span class="op">:</span>I][<span class="fl">1</span>] <span class="op">=</span> <span class="fl">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="code-demonstration-simulating-data-3" class="slide level2" data-auto-animate="true" data-visibility="uncounted">
 <h2 data-id="quarto-animate-title">Code Demonstration: Simulating Data</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode julia hljs"><span id="cb4-1" class="hljs-ln-code"><a href="#cb4-1"></a>Nt <span class="op">=</span> <span class="fl">365</span></span>
 <span id="cb4-2" class="hljs-ln-code"><a href="#cb4-2"></a>Nloc <span class="op">=</span> <span class="fl">1</span></span>
@@ -1795,7 +1786,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <span id="cb6-18" class="hljs-ln-code"><a href="#cb6-18"></a>M <span class="op">=</span> <span class="fl">50</span></span>
 <span id="cb6-19" class="hljs-ln-code"><a href="#cb6-19"></a>p <span class="op">=</span> <span class="fl">3</span></span>
 <span id="cb6-20" class="hljs-ln-code"><a href="#cb6-20"></a><span class="co">## run hybrid particle filter</span></span>
-<span id="cb6-21" class="hljs-ln-code"><a href="#cb6-21"></a>out <span class="op">=</span> <span class="fu">pf_hybrid2</span>(yobs, N, M, θ, g, compartments, transitions, proposals; p<span class="op">=</span>p)</span>
+<span id="cb6-21" class="hljs-ln-code"><a href="#cb6-21"></a>out <span class="op">=</span> <span class="fu">pf_hybrid</span>(yobs, N, M, θ, g, compartments, transitions, proposals; p<span class="op">=</span>p)</span>
 <span id="cb6-22" class="hljs-ln-code"><a href="#cb6-22"></a>Iest <span class="op">=</span> <span class="fu">getstate</span>(out[<span class="fl">1</span>], <span class="op">:</span>I, <span class="fl">1</span>, out[<span class="fl">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="code-demonstration-particle-filter-2" class="slide level2" data-auto-animate="true" data-visibility="uncounted">

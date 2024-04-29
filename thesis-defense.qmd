@@ -697,7 +697,7 @@ We consider a 103 week cholera outbreak in Haiti from 2010 through 2012.
 
 - Cholera is an acute infection caused by the bacterium *Vibrio cholerae* (*V. cholerae*) which can result in severe diarrhea.
 
-    - The Haitian government reports about 10,000 cholera deaths during this time.
+    - During this time, the Haitian public health ministry reported 604,634 cases of infection, 329,697 hospitalizations, and 7436 deaths from cholera.
 
 - *V. cholerae* is usually ingested via contaminated food or water and introduced back into the environment through contaminated fecal matter.
 
@@ -722,7 +722,7 @@ Haiti is divided into 10 departments:
 
 ## Data 
 
-The observed data are weakly reported case counts in each of Haiti's 10 departments.
+The observed data are weekly reported case counts in each of Haiti's 10 departments.
 
 ::: {#fig-haiti-dat layout-ncol=2}
 
@@ -796,14 +796,11 @@ Rectanges indicate custom types whereas diamonds indicate convenience functions.
 ![Post-processing functions available in HybridParticleFilter.jl. Diamonds
 indicate functions and rectangles indicate output.](post-funcs.png){width="450" height="500"}
 
-## Code Demonstration {auto-animate="true"}
+## Code Demonstration: Simulating Data {auto-animate="true"}
 
 ```julia
 Nt = 365
 Nloc = 1
-N = 50
-M = 50
-p = 3
 ```
 
 ## Code Demonstration: Simulating Data {auto-animate="true" visibility="uncounted"}
@@ -811,9 +808,6 @@ p = 3
 ```julia
 Nt = 365
 Nloc = 1
-N = 50
-M = 50
-p = 3
 # ODE for SE, EI, IR transitions
 odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
 odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
@@ -830,9 +824,6 @@ transitions = [SE, EI, IR]
 ```julia
 Nt = 365
 Nloc = 1
-N = 50
-M = 50
-p = 3
 # ODE for SE, EI, IR transitions
 odeSE(; S, E, I, R, Np, σ, γ, β, Nloc) = (β .* I ./ Np)
 odeEI(; S, E, I, R, Np, σ, γ, β, Nloc) = σ
@@ -930,7 +921,7 @@ N = 50
 M = 50
 p = 3
 ## run hybrid particle filter
-out = pf_hybrid2(yobs, N, M, θ, g, compartments, transitions, proposals; p=p)
+out = pf_hybrid(yobs, N, M, θ, g, compartments, transitions, proposals; p=p)
 Iest = getstate(out[1], :I, 1, out[4])
 ```
 
