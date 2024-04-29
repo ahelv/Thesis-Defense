@@ -1081,12 +1081,80 @@ Finally,
 
 - $w_t^{(i)} = \frac{1}{M} \sum_{j=1}^M \frac{p(y_t | x_t^{(i, j)})}{p(x_t^{(i)})}$
 
+## Appendix: Cholera Outbreak {visibility="uncounted"}
+
+::: {.panel-tabset}
+
+### Schematic
+
+```{mermaid}
+%%| fig-width: 5
+
+flowchart LR
+classDef iowa color:#000000,fill:#FFCD00, stroke:#000000
+  A((S)) --> B((I))
+  A((S)) --> C((R))
+  A((S)) --> D((D))
+  B --> C
+  B --> D
+  C --> A
+  C --> D
+  D --> A
+
+class A,B,C,D iowa
+```
+
+### Transition Events 
+
+| Event                   | Transition               | Binomial Distribution                                                                                                                                                 |
+|-------------------------|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Birth                   | $(S_{(l)}+1)$            | $B(h_{(l)}, 1 - exp\{ -\mu \})$                                                                                                                                       |
+| Death of a susceptible  | $(S_{(l)}-1, D_{(l)}+1)$ | $B(S_{(l)}, 1 - exp \{ -\mu \})$                                                                                                                                      |
+| Death of a recovered    | $(R_{(l)}-1, D_{(l)}+1)$ | $B(R_{(l)}, 1 - exp \{ -\mu \})$                                                                                                                                      |
+| Death of an infected    | $(I_{(l)}-1, D_{(l)}+1)$ | $B(I_{(l)}, 1 - exp \{ -\mu \})$                                                                                                                                      |
+| Cholera-induced death   | $(I_{(l)}-1, D_{(l)}+1)$ | $B(I_{(l)}, 1 - exp \{ -\alpha \})$                                                                                                                                   |
+| Symptomatic infection   | $(S_{(l)}-1, I_{(l)}+1)$ | $B(S_{(l)}, 1 - exp \{ -[\sigma_{(l)} \times 
+  \beta_{(l)}((1-m)(\frac{B_{(l)}}{K + B_{(l)}}) + m \times \sum_{j=1}^{n} A_{ij} \frac{B_{(j)}}{K + B_{(j)}}) ] \} )$                                                                                                                          |
+| Asymptomatic infection  | $(S_{(l)}-1, R_{(l)}+1)$ | $B(S_{(l)}, 1 - exp \{ -[(1-\sigma_{(l)}) \times \beta_{(l)}((1-m)(\frac{B_{(l)}}{K + B_{(l)}}) + m \times \sum_{j=1}^{n} A_{ij} \frac{B_{(j)}}{K + B_{(j)}}) ] \} )$ |
+| Recovery from infection | $(I_{(l)}-1, R_{(l)}+1)$ | $B(I_{(l)}, 1 - exp \{ -\gamma \})$                                                                                                                                   |
+| Immunity loss           | $(S_{(l)}+1, R_{(l)}-1)$ | $B(R_{(l)}, 1 - exp \{ -\rho \} )$                                                                                                                                    |
+
+:::
+
+## Appendix: Cholera Outbreak Parameters {visibility="uncounted"}
+
+::: {.panel-tabset}
+
+### All Parameters
+
+| Parameter      | Prior or Fixed Value                  | Purpose                                | Reference            |
+|----------------|---------------------------------------|----------------------------------------|----------------------|
+| $B_{(l)}$      | $N(\frac{I_{(l)}(0)}{h_{(l)}}, 0.01)$ | Concentration of *V. cholerae*   | (Bertuzzo et al., 2016) |
+| $\beta_{(l)}$  | $Unif(0.01, 0.2)$                     | Bacterial exposure rate                | (Bertuzzo et al., 2016) |
+| $\sigma_{(l)}$ | $Unif(0.01, 0.3)$                     | Prop. symptomatic infections           | (CDC, 2022)  |
+| $tt_{(l)}$     | $Unif(10, 50)$                        | Change point for $\beta_{(l)}$         |                      |
+| $\mu$          | 0.000045                              | Death rate/Birth rate                  | (The World Bank, 2024)   |
+| $\mu_B$        | $Unif(0.01, 0.05)$                    | Net death rate of *V. cholerae* | (Hartley et al., 2006)  |
+| $\alpha$       | $Unif(0, 0.01)$                       | Death rate from cholera                | (WHO, 2023) |
+| $\gamma$       | 0.2                                   | Recovery from infection                | (Codeço, 2001) |
+| $\rho$         | $Unif(0.0005, 0.02)$                  | Loss of immunity                       |  (Leung and Matrajt, 2021)  |
+| $K$            | 10 cells/$\mu$L                       | Half saturation constant               | (Codeço, 2001)   |
+| $m$            | 0.22                                  | Probability of traveling               | (Bertuzzo, et al., 2016) |
 
 
+### Time-Varying Parameters
+The bacterial exposure rate ($\beta$) and the environmental concentration of *V. cholerae* both vary with time and location. 
 
+$$\frac{d B_{(l)}}{d t} = - (\mu_B \times B_{(l)}(t)) + (\frac{1}{h_{(l)}} \times (1 + r_{(l)}(t)) \times I_{(l)}(t))$$
 
+$$\beta_{(l)} = 
+    \begin{cases}
+        \beta_{(l)} \times exp\{ - \frac{\sum_{i=1}^{t}I_{(l)}(i)}{(0.068 \times h_{(l)})} \}, & \text{IF } t<tt \\
+        B_{(l)}(0), & \text{IF } t = tt \\
+        \beta_{(l)} \times exp\{ -\frac{\sum_{i=tt}^{t} I_{(l)}(i)}{(0.068 \times h_{(l)})} \}, & \text{IF } t>tt
+    \end{cases} $$
 
-
+:::
 
 
 

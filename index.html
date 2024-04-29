@@ -1887,7 +1887,7 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <ul>
 <li>Friends, family, and cats</li>
 </ul>
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="absolute quarto-figure quarto-figure-center" height="420" data-right="40" width="420" data-bottom="0" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
+<div id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="absolute quarto-figure quarto-figure-center" data-bottom="0" data-right="40" width="420" height="420" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
 <figure class="quarto-float quarto-float-fig">
 <div>
 <img data-src="cats.png" id="fig-539a35d47e664c97a50115a146a7f1bd-10" class="absolute" style="bottom: 0px; right: 40px; width: 420px; height: 420px; ">
@@ -1952,6 +1952,204 @@ Figure&nbsp;13: Observed cholera case counts across Haiti from October 17, 2010 
 <li><p><span class="math inline">\(\{ X_t^{(i,j)}\} \sim p(y_t | x_t^{(i)})\)</span></p></li>
 <li><p><span class="math inline">\(w_t^{(i)} = \frac{1}{M} \sum_{j=1}^M \frac{p(y_t | x_t^{(i, j)})}{p(x_t^{(i)})}\)</span></p></li>
 </ul>
+</section>
+<section id="appendix-cholera-outbreak" class="slide level2" data-visibility="uncounted">
+<h2>Appendix: Cholera Outbreak</h2>
+<div class="panel-tabset">
+<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">Schematic</a></li><li><a href="#tabset-9-2">Transition Events</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1">
+<div class="cell" data-reveal="true" data-fig-width="5">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+classDef iowa color:#000000,fill:#FFCD00, stroke:#000000
+  A((S)) --&gt; B((I))
+  A((S)) --&gt; C((R))
+  A((S)) --&gt; D((D))
+  B --&gt; C
+  B --&gt; D
+  C --&gt; A
+  C --&gt; D
+  D --&gt; A
+
+class A,B,C,D iowa
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2">
+<table>
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Transition</th>
+<th>Binomial Distribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Birth</td>
+<td><span class="math inline">\((S_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(h_{(l)}, 1 - exp\{ -\mu \})\)</span></td>
+</tr>
+<tr class="even">
+<td>Death of a susceptible</td>
+<td><span class="math inline">\((S_{(l)}-1, D_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(S_{(l)}, 1 - exp \{ -\mu \})\)</span></td>
+</tr>
+<tr class="odd">
+<td>Death of a recovered</td>
+<td><span class="math inline">\((R_{(l)}-1, D_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(R_{(l)}, 1 - exp \{ -\mu \})\)</span></td>
+</tr>
+<tr class="even">
+<td>Death of an infected</td>
+<td><span class="math inline">\((I_{(l)}-1, D_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(I_{(l)}, 1 - exp \{ -\mu \})\)</span></td>
+</tr>
+<tr class="odd">
+<td>Cholera-induced death</td>
+<td><span class="math inline">\((I_{(l)}-1, D_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(I_{(l)}, 1 - exp \{ -\alpha \})\)</span></td>
+</tr>
+<tr class="even">
+<td>Symptomatic infection</td>
+<td><span class="math inline">\((S_{(l)}-1, I_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(S_{(l)}, 1 - exp \{ -[\sigma_{(l)} \times  \beta_{(l)}((1-m)(\frac{B_{(l)}}{K + B_{(l)}}) + m \times \sum_{j=1}^{n} A_{ij} \frac{B_{(j)}}{K + B_{(j)}}) ] \} )\)</span></td>
+</tr>
+<tr class="odd">
+<td>Asymptomatic infection</td>
+<td><span class="math inline">\((S_{(l)}-1, R_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(S_{(l)}, 1 - exp \{ -[(1-\sigma_{(l)}) \times \beta_{(l)}((1-m)(\frac{B_{(l)}}{K + B_{(l)}}) + m \times \sum_{j=1}^{n} A_{ij} \frac{B_{(j)}}{K + B_{(j)}}) ] \} )\)</span></td>
+</tr>
+<tr class="even">
+<td>Recovery from infection</td>
+<td><span class="math inline">\((I_{(l)}-1, R_{(l)}+1)\)</span></td>
+<td><span class="math inline">\(B(I_{(l)}, 1 - exp \{ -\gamma \})\)</span></td>
+</tr>
+<tr class="odd">
+<td>Immunity loss</td>
+<td><span class="math inline">\((S_{(l)}+1, R_{(l)}-1)\)</span></td>
+<td><span class="math inline">\(B(R_{(l)}, 1 - exp \{ -\rho \} )\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="appendix-cholera-outbreak-parameters" class="slide level2" data-visibility="uncounted">
+<h2>Appendix: Cholera Outbreak Parameters</h2>
+<div class="panel-tabset">
+<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">All Parameters</a></li><li><a href="#tabset-10-2">Time-Varying Parameters</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1">
+<table>
+<colgroup>
+<col style="width: 13%">
+<col style="width: 33%">
+<col style="width: 34%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Prior or Fixed Value</th>
+<th>Purpose</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(B_{(l)}\)</span></td>
+<td><span class="math inline">\(N(\frac{I_{(l)}(0)}{h_{(l)}}, 0.01)\)</span></td>
+<td>Concentration of <em>V. cholerae</em></td>
+<td>(Bertuzzo et al., 2016)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\beta_{(l)}\)</span></td>
+<td><span class="math inline">\(Unif(0.01, 0.2)\)</span></td>
+<td>Bacterial exposure rate</td>
+<td>(Bertuzzo et al., 2016)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sigma_{(l)}\)</span></td>
+<td><span class="math inline">\(Unif(0.01, 0.3)\)</span></td>
+<td>Prop. symptomatic infections</td>
+<td>(CDC, 2022)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(tt_{(l)}\)</span></td>
+<td><span class="math inline">\(Unif(10, 50)\)</span></td>
+<td>Change point for <span class="math inline">\(\beta_{(l)}\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu\)</span></td>
+<td>0.000045</td>
+<td>Death rate/Birth rate</td>
+<td>(The World Bank, 2024)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mu_B\)</span></td>
+<td><span class="math inline">\(Unif(0.01, 0.05)\)</span></td>
+<td>Net death rate of <em>V. cholerae</em></td>
+<td>(Hartley et al., 2006)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\alpha\)</span></td>
+<td><span class="math inline">\(Unif(0, 0.01)\)</span></td>
+<td>Death rate from cholera</td>
+<td>(WHO, 2023)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\gamma\)</span></td>
+<td>0.2</td>
+<td>Recovery from infection</td>
+<td>(Codeço, 2001)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\rho\)</span></td>
+<td><span class="math inline">\(Unif(0.0005, 0.02)\)</span></td>
+<td>Loss of immunity</td>
+<td>(Leung and Matrajt, 2021)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(K\)</span></td>
+<td>10 cells/<span class="math inline">\(\mu\)</span>L</td>
+<td>Half saturation constant</td>
+<td>(Codeço, 2001)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(m\)</span></td>
+<td>0.22</td>
+<td>Probability of traveling</td>
+<td>(Bertuzzo, et al., 2016)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-10-2">
+<p>The bacterial exposure rate (<span class="math inline">\(\beta\)</span>) and the environmental concentration of <em>V. cholerae</em> both vary with time and location.</p>
+<p><span class="math display">\[\frac{d B_{(l)}}{d t} = - (\mu_B \times B_{(l)}(t)) + (\frac{1}{h_{(l)}} \times (1 + r_{(l)}(t)) \times I_{(l)}(t))\]</span></p>
+<p><span class="math display">\[\beta_{(l)} =
+    \begin{cases}
+        \beta_{(l)} \times exp\{ - \frac{\sum_{i=1}^{t}I_{(l)}(i)}{(0.068 \times h_{(l)})} \}, &amp; \text{IF } t&lt;tt \\
+        B_{(l)}(0), &amp; \text{IF } t = tt \\
+        \beta_{(l)} \times exp\{ -\frac{\sum_{i=tt}^{t} I_{(l)}(i)}{(0.068 \times h_{(l)})} \}, &amp; \text{IF } t&gt;tt
+    \end{cases} \]</span></p>
+</div>
+</div>
+</div>
 
 <img src="IOWA-logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>A Hybrid Particle Filter</p>
