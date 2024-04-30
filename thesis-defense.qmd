@@ -1066,7 +1066,7 @@ Finally,
 \begin{align}
     \label{eq:wtsub}
     w_t^i &\propto \frac{p(x_{0:t}^i|y_{1:t})}{q(x_t^i|x_{0:t-1}^i, y_{1:t}) q(x_{0:t-1}^i|y_{1:t-1})} \nonumber \\
-    &= \frac{p(y_t | x_t) p(x_t|x_{t-1}) p(x_{0:t-1}|y_{1:t-1})}{q(x_t^i|x_{0:t-1}^i, y_{1:t}) q(x_{0:t-1}^i|y_{1:t-1})} \nonumber \\
+    &= \frac{p(y_t | x_t^i) p(x_t^i|x_{t-1}^i) p(x_{0:t-1}^i|y_{1:t-1})}{q(x_t^i|x_{0:t-1}^i, y_{1:t}) q(x_{0:t-1}^i|y_{1:t-1})} \nonumber \\
     &= w_{t-1}^i \frac{p(y_t|x_t^i) p(x_t^i | x_{t-1}^i)}{q(x_t^i|x_{0:t-1}^i, y_{1:t})} \nonumber \\
     &= w_{t-1}^i \frac{p(y_t|x_t^i) p(x_t^i | x_{t-1}^i)}{q(x_t^i|x_{t-1}^i, y_t)}
 \end{align}
