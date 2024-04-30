@@ -668,18 +668,18 @@ $$\frac{dR}{dt} = \lambda * I$$
 
 | **T** | **N** | **M** | **Hybrid PF Runtime** | **Nested PF Runtime** |
 |-------|-------|-------|-----------------------|-----------------------|
-| 365                             | 10                             | 10                              | > 1 second                             | > 1 second                              |
+| 365                             | 10                             | 10                              | < 1 second                             | < 1 second                              |
 | 365                             | 50                             | 50                              | 18 seconds                             | 15 seconds                              |
 | 365                             | 100                            | 100                             | 126 seconds                            | 260 seconds                             |
 | 365                             | 10                             | 50                              | 3 seconds                              | 3 seconds                               |
 | 365                             | 50                             | 10                              | 3 seconds                              | 3 seconds                               |
 | 365                             | 10                             | 100                             | 7 seconds                              | 6 seconds                               |
 | 365                             | 100                            | 10                              | 7 seconds                              | 6 seconds                               |
-| 100                             | 10                             | 10                              | > 1 second                             | > 1 second                              |
+| 100                             | 10                             | 10                              | < 1 second                             | < 1 second                              |
 | 100                             | 50                             | 50                              | 7 seconds                              | 4 seconds                               |
 | 100                             | 100                            | 100                             | 33 seconds                             | 16 seconds                              |
-| 100                             | 10                             | 50                              | 1 second                               | > 1 second                              |
-| 100                             | 50                             | 10                              | 1 second                               | > 1 second                              |
+| 100                             | 10                             | 50                              | 1 second                               | < 1 second                              |
+| 100                             | 50                             | 10                              | 1 second                               | < 1 second                              |
 | 100                             | 10                             | 100                             | 2 seconds                              | 2 seconds                               |
 | 100                             | 100                            | 10                              | 2 seconds                              | 1 second                                |
 
